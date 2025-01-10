@@ -7,10 +7,16 @@
 </head>
 <body>
     <h1>League of Legends Champions</h1>
-    <ul>
-        {% for champion in champions %}
-            <li>{{ champion.name }} - {{ champion.title }} - <img src="{{ champion.image }}" alt="{{ champion.name }}"></li>
-        {% endfor %}
-    </ul>
+    {% for champion in champions %}
+    <div>
+        <h2>{{ champion.name }} ({{ champion.title }})</h2>
+        <img src="{{ champion.image }}" alt="{{ champion.name }}">
+        <p>Gender: {{ champion.gender }}</p>
+        <p>Attack Type: {{ champion.attackType }}</p>
+        <p>Release Date: {{ champion.releaseDate }}</p>
+        <p>Region: {{ champion.region }}</p>
+        <p>Lane: {{ champion.lane }}</p>
+    </div>
+{% endfor %}
 </body>
 </html>
