@@ -1,1 +1,16 @@
-<h1>Test</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends Champions</title>
+</head>
+<body>
+    <h1>League of Legends Champions</h1>
+    <ul>
+        {% for champion in champions %}
+            <li>{{ champion.name }} - {{ champion.title }} - <img src="{{ champion.image }}" alt="{{ champion.name }}"></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
