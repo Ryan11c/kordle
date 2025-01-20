@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>League of Legends Champions</title>
-</head>
+<title>League of Legends Champions</title>
 <body>
-    <h1>League of Legends Champions</h1>
-    {% for champion in champions %}
+    <h1>Random Champion</h1>
     <div>
-        <h2>{{ champion.name }} ({{ champion.title }})</h2>
-        <img src="{{ champion.image }}" alt="{{ champion.name }}">
-        <p>Gender: {{ champion.gender }}</p>
-        <p>Attack Type: {{ champion.attackType }}</p>
-        <p>Release Date: {{ champion.releaseDate }}</p>
-        <p>Region: {{ champion.region }}</p>
-        <p>Lane: {{ champion.lane }}</p>
+        <h2>{{ random_champion.name }}</h2>
+        <h3>{{ random_champion.title }}</h3>
+        <img src="{{ random_champion.image }}" alt="{{ random_champion.name }}">
+        <p>Gender: {{ random_champion.gender }}</p>
+        <p>Attack Type: {{ random_champion.attackType }}</p>
+        <p>Release Date: {{ random_champion.releaseDate }}</p>
+        <p>Region: {{ random_champion.region }}</p>
+        <p>Lane: {{ random_champion.lane }}</p>
     </div>
-{% endfor %}
 </body>
-</html>
+

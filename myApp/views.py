@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 import os
-import json
+import json, random
 
 
 #Helper function to load the JSON file
@@ -20,24 +20,27 @@ def home(request):
     #Load additional data from the local JSON file
     champions_data = load_champion_data()
     #Convert the local data to a dictionary for quick lookup
-    champions_dict = {champ["name"]: champ for champ in champions_data}
+    champions_dict = {champ["id"]: champ for champ in champions_data}
     api_url = "https://ddragon.leagueoflegends.com/cdn/15.1.1/data/en_US/champion.json"
     response = requests.get(api_url)
+
     if response.status_code == 200:
         champions_data = response.json()
         champions = []
+        random_champion = None
         #Iterate through the API and fetch data
         for name, details in champions_data['data'].items():
             champion_info = {
                 "name": name,
                 "title": details["title"],
+                "id": details["id"],
                 #In the Data Dragon API for LoL champions, the images of the champions are located here:
                 #We just have to pass in the name of the champion to get the image!
                 "image": f"https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/{name}.png"
             }
             #Add additional data if available in the local JSON file
-            if name in champions_dict:
-                local_data = champions_dict[name]
+            if details["id"] in champions_dict:
+                local_data = champions_dict[details["id"]]
                 champion_info.update({
                     "gender": local_data.get("gender", "unknown"),
                     "attackType": local_data.get("attackType", "unknown"),
@@ -55,7 +58,12 @@ def home(request):
                     "lane": "unknown"
                 })
             champions.append(champion_info)
-    else:
-        champions = []
 
-    return render(request, 'home.html', {'champions': champions})
+        if champions:
+            random_champion = random.choice(champions)
+    else:
+        # Just in case API fails, we just clear the list
+        champions = [] 
+        random_champion = {"Failed to load champions data :("}
+
+    return render(request, 'home.html', {'champions': champions, 'random_champion': random_champion})
