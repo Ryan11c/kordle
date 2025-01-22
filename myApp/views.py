@@ -1,7 +1,9 @@
 from django.shortcuts import render
-import requests
-import os
-import json, random
+import requests, os, json, random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import ChampionSerializer
 
 
 #Helper function to load the JSON file
@@ -48,15 +50,6 @@ def home(request):
                     "region": local_data.get("region", "unknown"),
                     "lane": local_data.get("lane", "unknown")
                 })
-            else:
-                #Default values if no data
-                champion_info.update({
-                    "gender": "unknown",
-                    "attackType": "unknown",
-                    "releaseDate": "unknown",
-                    "region": "unknown",
-                    "lane": "unknown"
-                })
             champions.append(champion_info)
 
         if champions:
@@ -67,3 +60,53 @@ def home(request):
         random_champion = {"Failed to load champions data :("}
 
     return render(request, 'home.html', {'champions': champions, 'random_champion': random_champion})
+
+
+#This class is basically the same as the function above but it is a class-based API view. 
+#Handles HTTP GET requests to return random LoL champion data from the local JSON data and fetched API data.
+class ChampionAPIView(APIView):
+    def get(self, request):
+        champions_data = load_champion_data()
+        champions_dict = {champ["id"]: champ for champ in champions_data}
+        #Fetch champions from API.
+        api_url = "https://ddragon.leagueoflegends.com/cdn/15.1.1/data/en_US/champion.json"
+        response = requests.get(api_url)
+
+        if response.status_code == 200:
+            champions_data = response.json()
+            champions = []
+            for name, details in champions_data['data'].items():
+                champion_info = {
+                    "name": name,
+                    "title": details["title"],
+                    "id": details["id"],
+                    "image": f"https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/{name}.png"
+                }
+                #Add local data from my json file
+                if details["id"] in champions_dict:
+                    local_data = champions_dict[details["id"]]
+                    champion_info.update({
+                        "gender": local_data.get("gender", "unknown"),
+                        "attackType": local_data.get("attackType", "unknown"),
+                        "releaseDate": local_data.get("releaseDate", "unknown"),
+                        "region": local_data.get("region", "unknown"),
+                        "lane": local_data.get("lane", "unknown")
+                    })
+                champions.append(champion_info)
+
+            #Select a random champion
+            if champions:
+                random_champion = random.choice(champions)
+            #Serialize the selected champion's data to JSON format!!!!!!!!!!!!
+            serializer = ChampionSerializer(random_champion).data
+            #Serialize the whole champion list
+            serialized_champions = ChampionSerializer(champions, many=True).data
+            return Response(
+                {
+                    "random_champion": serializer,
+                    "champion_list": serialized_champions
+                },
+                status=status.HTTP_200_OK
+            )
+        #Just in case API fails, we have an error catch
+        return Response({"error": "Failed to fetch data from API"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

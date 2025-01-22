@@ -1,5 +1,5 @@
 {% load static %}
-<title>League of Legends Champions</title>
+<!-- <title>League of Legends Champions</title>
 <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
 <body>
     <h1>Random Champion</h1>
@@ -13,5 +13,33 @@
         <p>Region: {{ random_champion.region }}</p>
         <p>Lane: {{ random_champion.lane }}</p>
     </div>
-</body>
+</body> -->
 
+<title>LoLWordle</title>
+<link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
+<div>
+    <form class="userGuessForm">
+        <input type="text" id="userInput" class="userGuessInput" oninput="showSuggestions(this.value)"
+            placeholder="Enter Champion...">
+        <ul class="dropdown-list" id="dropdownList"></ul>
+        <button type="submit" id="submitButton">Guess</button>
+    </form>
+    <table id="champ-table"> 
+        <thead id="topRow">
+            <tr>
+                <th>Icon</th>
+                <th>Gender</th>
+                <th>Position</th>
+                <th>Species</th>
+                <th>Resource</th>
+                <th>Range Type</th>
+                <th>Region</th>
+                <th>Released</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td id="icon-display"></td>
+        </tbody>
+    </table>
+</div>
+<script src="{% static 'myApp/js/home.js' %}"></script>
