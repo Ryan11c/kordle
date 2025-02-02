@@ -45,10 +45,12 @@ def home(request):
                 local_data = champions_dict[details["id"]]
                 champion_info.update({
                     "gender": local_data.get("gender", "unknown"),
+                    "resource": local_data.get("resource", "unknown"),
                     "attackType": local_data.get("attackType", "unknown"),
                     "releaseDate": local_data.get("releaseDate", "unknown"),
                     "region": local_data.get("region", "unknown"),
-                    "lane": local_data.get("lane", "unknown")
+                    "lane": local_data.get("lane", "unknown"),
+                    "genre": local_data.get("genre", "unknown"),
                 })
             champions.append(champion_info)
 
@@ -87,10 +89,12 @@ class ChampionAPIView(APIView):
                     local_data = champions_dict[details["id"]]
                     champion_info.update({
                         "gender": local_data.get("gender", "unknown"),
+                        "resource": local_data.get("resource", "unknown"),
                         "attackType": local_data.get("attackType", "unknown"),
                         "releaseDate": local_data.get("releaseDate", "unknown"),
                         "region": local_data.get("region", "unknown"),
-                        "lane": local_data.get("lane", "unknown")
+                        "lane": local_data.get("lane", "unknown"),
+                        "genre": local_data.get("genre", "unknown"),
                     })
                 champions.append(champion_info)
 

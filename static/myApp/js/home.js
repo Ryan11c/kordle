@@ -1,6 +1,6 @@
 //This function is for showing champion name suggestions when the user
 //enters the champion name in the input box.
-function showSuggestions(input) {
+function showSuggestions(input){
     const dropdown = document.getElementById("dropdownList");
     dropdown.innerHTML = ""; //Clear previous suggestions!
     if(input.trim() === ""){
@@ -40,3 +40,179 @@ function showSuggestions(input) {
         }
     })
 }
+
+
+let champList = [];
+let ansChamp = null;
+const isUsed = {};
+
+
+//Load the champion data to champList and ansChamp so that I can use it for my game logic
+function loadChampions(){
+    //Fetch data from my API
+    fetch('http://127.0.0.1:8000/api/champion/')
+    .then(response => response.json())
+    .then(data => {
+        //Store champions in champList
+        champList = data.champion_list;
+        //Get a random champion as the answer
+        ansChamp = data.random_champion;
+    })
+    //Error catch
+    .catch(error => console.error('Error fetching champion data:', error));
+}
+//load the loadChampions function
+document.addEventListener("DOMContentLoaded", loadChampions);
+
+
+//Function to get the guessed champion name and search it from the champ list
+function getChampNum(guessChampName){
+    //Find the champion in the list
+    const champion = champList.find(champ => 
+      champ.name.toLowerCase() === guessChampName.toLowerCase()
+    );
+    if(champion){
+        //Check if the champion has already been guessed
+        if(!isUsed[champion.id]){
+        //Mark the champion as true meaning it was searched already
+        isUsed[champion.id] = true;
+        return champion;
+        }
+        else{
+        //ERROR CATCHYYY
+        console.log("You've already guessed this champion!");
+        return null;
+        }
+    }
+    else{
+        //ERROR CATCH AGAIN
+        console.log("Champion not found!");
+        return null;
+    }
+}
+
+
+const userGuessForm = document.querySelector(".userGuessForm");
+const userGuessInput = document.querySelector(".userGuessInput");
+const tableBody = document.querySelector("#champ-table tbody");
+//When the user submits their guess, the follow function is called
+userGuessForm.addEventListener("submit", async event => {
+    //Check the console for the random champion name to check answer
+    console.log(ansChamp.name)
+    event.preventDefault();
+    const selectedChampionName = userGuessInput.value.trim();
+    if(!selectedChampionName){
+        alert("Please select a Champion!");
+        return;
+    }
+    const champGuess = getChampNum(selectedChampionName);
+    //Check if the champGuess and the answer matches
+    if(champGuess){
+        await compareChampInfo(champGuess, ansChamp);
+    } 
+    //Invalid entry check
+    else{
+        alert("Champion not found or already guessed!");
+    }
+});
+
+
+//Sleep function!!!
+function sleep(seconds){
+    return new Promise(resolve => setTimeout(resolve, seconds));
+}
+  
+
+//This function displays which part of the champion criteria the user got correct
+//by inserting cells into a table row with either correct or incorrect
+async function compareChampInfo(champGuess, ansChamp){
+let row = tableBody.insertRow(-1);
+    //Icon or image cell
+    const iconCell = row.insertCell(-1);
+    const champImg = document.createElement("img");
+    champImg.src = champGuess.image;
+    iconCell.appendChild(champImg);
+    
+    //Gender
+    const genderCell = row.insertCell(-1);
+    genderCell.textContent = champGuess.gender;
+    if(champGuess.gender === ansChamp.gender){
+        genderCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        genderCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+    
+    //Resource
+    const resourceCell = row.insertCell(-1);
+    resourceCell.textContent = champGuess.resource;
+    if(champGuess.resource === ansChamp.resource){
+        resourceCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        resourceCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+
+    //AttackType
+    const attackTypeCell = row.insertCell(-1);
+    attackTypeCell.textContent = champGuess.attackType;
+    if(champGuess.attackType === ansChamp.attackType){
+        attackTypeCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        attackTypeCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+
+    //Lane
+    const laneCell = row.insertCell(-1);
+    laneCell.textContent = champGuess.lane;
+    if(champGuess.lane === ansChamp.lane){
+        laneCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        laneCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+    
+    //Genre
+    const genreCell = row.insertCell(-1);
+    genreCell.textContent = champGuess.genre;
+    if(champGuess.genre === ansChamp.genre){
+        genreCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        genreCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+    
+    //Region
+    const regionCell = row.insertCell(-1);
+    regionCell.textContent = champGuess.region;
+    if(champGuess.region === ansChamp.region){
+        regionCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        regionCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+    
+    //ReleaseDate
+    const releaseCell = row.insertCell(-1);
+    releaseCell.textContent = champGuess.releaseDate;
+    if(champGuess.releaseDate === ansChamp.releaseDate){
+        releaseCell.classList.add("rotating-cell-correct");
+    }
+    else{
+        releaseCell.classList.add("rotating-cell-incorrect");
+    }
+    await sleep(500);
+    
+    //Checking if the user won by comparing guessed champ id and answer champ id
+    if (champGuess.id === ansChamp.id) {
+      console.log("You Win");
+    }
+}
+

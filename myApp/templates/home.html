@@ -1,20 +1,4 @@
 {% load static %}
-<!-- <title>League of Legends Champions</title>
-<link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
-<body>
-    <h1>Random Champion</h1>
-    <div>
-        <h2>{{ random_champion.name }}</h2>
-        <h3>{{ random_champion.title }}</h3>
-        <img src="{{ random_champion.image }}" alt="{{ random_champion.name }}">
-        <p>Gender: {{ random_champion.gender }}</p>
-        <p>Attack Type: {{ random_champion.attackType }}</p>
-        <p>Release Date: {{ random_champion.releaseDate }}</p>
-        <p>Region: {{ random_champion.region }}</p>
-        <p>Lane: {{ random_champion.lane }}</p>
-    </div>
-</body> -->
-
 <title>LoLWordle</title>
 <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
 <div>
@@ -29,16 +13,15 @@
             <tr>
                 <th>Icon</th>
                 <th>Gender</th>
-                <th>Position</th>
-                <th>Species</th>
                 <th>Resource</th>
-                <th>Range Type</th>
+                <th>Attack Type</th>
+                <th>Lane</th>
+                <th>Genre</th>
                 <th>Region</th>
-                <th>Released</th>
+                <th>Release Date</th>
             </tr>
         </thead>
         <tbody>
-            <td id="icon-display"></td>
         </tbody>
     </table>
 </div>

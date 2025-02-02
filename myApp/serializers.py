@@ -10,3 +10,5 @@ class ChampionSerializer(serializers.Serializer):
     releaseDate = serializers.CharField()
     region = serializers.CharField()
     lane = serializers.CharField()
+    genre = serializers.CharField()
+    resource = serializers.CharField()
