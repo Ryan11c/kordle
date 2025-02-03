@@ -1,3 +1,113 @@
-h1 {
-    color: cornflowerblue;
+body {
+    background-color: whitesmoke;
+    font-family: Arial, sans-serif;
 }
+  
+.userGuessForm {
+    margin: 20px;
+    display: flex;            
+    justify-content: center;   
+    align-items: center; 
+}
+
+.userGuessForm button {
+    width: 80px;
+    height: 70px
+}
+
+.userGuessForm input {
+    font-size: 1.2rem;
+}
+
+.userGuessForm input::placeholder {
+    font-size: 1.2rem;
+}
+
+.userGuessInput {
+    width: 400px;
+    height: 70px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.dropdown-list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 150px;
+    overflow-y: auto;
+    width: 200px; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 2px 0 0 0;
+    display: none;
+}
+  
+.dropdown-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+  
+.dropdown-list li:hover {
+    background-color: #f9f9f9;
+}
+  
+#champ-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+  
+#champ-table th, 
+#champ-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+  
+#topRow th {
+    font-family: 'Lucida Sans';
+    font-size: 15px;
+    width: 120px;
+    max-height: 50px;
+}
+
+#icon-display {
+    width: 50px;
+    height: 50px;
+}
+  
+.rotating-cell-correct {
+    font-size: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    text-align: center;
+    animation: rotate 0.5s;
+}
+  
+.rotating-cell-incorrect {
+    font-size: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+    animation: rotate 0.5s;
+}
+  
+@keyframes rotate {
+    from {
+      opacity: 0;
+      transform: translateZ(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+}
+  

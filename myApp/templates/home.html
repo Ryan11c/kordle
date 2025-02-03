@@ -2,12 +2,6 @@
 <title>LoLWordle</title>
 <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
 <div>
-    <form class="userGuessForm">
-        <input type="text" id="userInput" class="userGuessInput" oninput="showSuggestions(this.value)"
-            placeholder="Enter Champion...">
-        <ul class="dropdown-list" id="dropdownList"></ul>
-        <button type="submit" id="submitButton">Guess</button>
-    </form>
     <table id="champ-table"> 
         <thead id="topRow">
             <tr>
@@ -24,5 +18,11 @@
         <tbody>
         </tbody>
     </table>
+    <form class="userGuessForm">
+        <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
+            placeholder="Enter Champion...">
+        <ul class="dropdown-list" id="dropdownList"></ul>
+        <button type="submit" id="submitButton">Guess</button>
+    </form>
 </div>
 <script src="{% static 'myApp/js/home.js' %}"></script>
