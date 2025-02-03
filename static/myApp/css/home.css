@@ -4,6 +4,7 @@ body {
 }
   
 .userGuessForm {
+    position: relative;
     margin: 20px;
     display: flex;            
     justify-content: center;   
@@ -33,6 +34,7 @@ body {
   
 .dropdown-list {
     position: absolute;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     max-height: 150px;
