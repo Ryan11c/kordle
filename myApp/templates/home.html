@@ -5,6 +5,13 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
 <div>
+    <p class="title">Guess Your Champion</p>
+    <form class="userGuessForm">
+        <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
+            placeholder="Enter Champion...">
+        <ul class="dropdown-list" id="dropdownList"></ul>
+        <button type="submit" id="submitButton">Guess</button>
+    </form>
     <table id="champ-table"> 
         <thead id="topRow">
             <tr>
@@ -21,12 +28,6 @@
         <tbody>
         </tbody>
     </table>
-    <form class="userGuessForm">
-        <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
-            placeholder="Enter Champion...">
-        <ul class="dropdown-list" id="dropdownList"></ul>
-        <button type="submit" id="submitButton">Guess</button>
-    </form>
 </div>
 <script src="{% static 'myApp/js/home.js' %}"></script>
 {% endblock %}

@@ -2,6 +2,10 @@ body {
     background-color: whitesmoke;
     font-family: Arial, sans-serif;
 }
+
+.title {
+    text-align: center;
+}
   
 .userGuessForm {
     position: relative;

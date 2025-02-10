@@ -126,7 +126,7 @@ function sleep(seconds){
 //This function displays which part of the champion criteria the user got correct
 //by inserting cells into a table row with either correct or incorrect
 async function compareChampInfo(champGuess, ansChamp){
-let row = tableBody.insertRow(-1);
+let row = tableBody.insertRow(0);
     //Icon or image cell
     const iconCell = row.insertCell(-1);
     const champImg = document.createElement("img");
