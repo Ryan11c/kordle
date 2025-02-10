@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ChampionSerializer
+from.models import Profile
 
 
 #Helper function to load the JSON file
@@ -114,3 +115,12 @@ class ChampionAPIView(APIView):
             )
         #Just in case API fails, we have an error catch
         return Response({"error": "Failed to fetch data from API"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+
+#Show the user profiles in the html page
+def profile_list(request):
+    if request.user.is_authenticated:
+        profiles = Profile.objects.exclude(user=request.user)
+    else:
+        profiles = Profile.objects.all() 
+    return render(request, 'profile_list.html', {"profiles": profiles})
