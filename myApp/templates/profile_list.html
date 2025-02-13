@@ -2,28 +2,30 @@
 {% block title %}LoLWordle{% endblock %}
 {% load static %}
 {% block content %}
-    <h1>Profile List</h1>
+    <h1 class="text-center fs-1 fw-bold">Profile List</h1>
     {% if profiles %}
-        {% for profile in profiles %}
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" class="img-fluid rounded-start" alt="Pfp image ">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ profile.user.username }}</h5>
-                            <p class="card-text">@{{ profile.user.username|lower }}</p>
-                            <p class="card-text">Wins: {{ profile.wins }}</p>
-                            <p class="card-text"><small class="text-body-secondary">Last Updated: {{ profile.date_modified }}</small></p>
+        <div class="row justify-content-center">
+            {% for profile in profiles %}
+                <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+                    <div class="card mb-4" style="max-width: 400px;">
+                        <div class="row g-0">
+                            <div class="col-4 d-flex align-items-center">
+                                <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" class="img-fluid rounded-circle ps-2" alt="Profile Image">
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ profile.user.username }}</h5>
+                                    <p class="card-text text-muted">@{{ profile.user.username|lower }}</p>
+                                    <p class="card-text"><strong>Wins:</strong> {{ profile.wins }}</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last Updated: {{ profile.date_modified }}</small></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <br><br>
-        {% endfor %}
+            {% endfor %}
+        </div>
     {% else %}
-        <p>No profiles found.</p>
+        <p class="text-center text-muted">No profiles found.</p>
     {% endif %}
-
 {% endblock %}

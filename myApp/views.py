@@ -124,3 +124,8 @@ def profile_list(request):
     else:
         profiles = Profile.objects.all() 
     return render(request, 'profile_list.html', {"profiles": profiles})
+
+
+#The about page where I will put the description
+def about(request):
+    return render(request, 'about.html')

@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+{% block title %}LoLWordle{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4 w-75">
+    <h1 class="text-center fs-1 fw-bold">About LoLWordle</h1>
+    <div class="border border-dark p-3">
+        <section class="mt-4 text-start pb-2 ps-4">
+            <h2 class="fw-bold">Inspiration</h2>
+            <p>LoLWordle is inspired by <strong>LoLdle</strong> and <strong>Wordle</strong>, a game where you have to guess the champion or a word.
+            The game is built using the <strong>Django REST API</strong> for the backend, while the frontend is made with <strong>HTML, CSS, and JavaScript</strong>.</p>
+        </section>
+
+        <section class="mt-4 text-start pb-2 ps-4">
+            <h2 class="fw-bold">How to Play</h2>
+            <p>Enter a champion's name in the text box and click <strong>Guess</strong> to submit your answer. The game provides visual feedback through color-coded tiles:</p>
+            <p><span class="text-success fw-bold">Green</span>: The category is correct.</p>
+            <p><span class="text-danger fw-bold">Red</span>: The category is incorrect.</p>
+            <p>Use your League of Legends knowledge to try to make all the tiles turn green!</p>
+        </section>
+
+        <section class="mt-4 text-start pb-2 ps-4">
+            <h2 class="fw-bold">Scoring</h2>
+            <p>You earn <strong>1 point</strong> for each correctly guessed champion.</p>
+            <p>Reloading the page resets the champion to a new random selection.</p>
+        </section>
+    </div>
+</div>
+{% endblock %}

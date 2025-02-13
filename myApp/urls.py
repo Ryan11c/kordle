@@ -21,5 +21,6 @@ from .views import ChampionAPIView
 urlpatterns = [
    path('', views.home, name='home'),
    path('api/champion/', ChampionAPIView.as_view(), name='champion-api'),
-   path('profile_list/', views.profile_list, name='profile_list')
+   path('profile_list/', views.profile_list, name='profile_list'),
+   path('about/', views.about, name='about'),
 ]
