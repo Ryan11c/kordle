@@ -23,4 +23,6 @@ urlpatterns = [
    path('api/champion/', ChampionAPIView.as_view(), name='champion-api'),
    path('profile_list/', views.profile_list, name='profile_list'),
    path('about/', views.about, name='about'),
+   path('login/', views.login_user, name='login'),
+   path('logout/', views.logout_user, name='logout'),
 ]

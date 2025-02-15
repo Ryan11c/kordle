@@ -26,11 +26,29 @@
                     <li class="nav-item">
                         <a class="nav-link text-white fw-bold fs-5" href="{% url 'profile_list' %}">Profile List</a>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold fs-5" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold fs-5" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="container mt-4">
         {% block content %}  
         {% endblock %}

@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests, os, json, random
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ChampionSerializer
 from.models import Profile
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 #Helper function to load the JSON file
@@ -129,3 +131,28 @@ def profile_list(request):
 #The about page where I will put the description
 def about(request):
     return render(request, 'about.html')
+
+
+#Login page for the application. Get the username and password from the login html
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, ("You have been logged in."))
+            return redirect('home')
+        else:
+            messages.success(request, ("There was an error logging in. Please try again."))
+            return redirect('login')
+    else:
+        return render(request, "login.html", {})
+    
+
+
+#Just using django's built in logout feature. Super duper easy
+def logout_user(request):
+    logout(request)
+    messages.success(request, ("You have been logged out."))
+    return redirect('home')
