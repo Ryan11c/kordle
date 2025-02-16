@@ -32,6 +32,9 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
+                            <a class="nav-link text-white fw-bold fs-5" href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white fw-bold fs-5" href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
