@@ -10,7 +10,11 @@
                     <div class="card mb-4" style="max-width: 400px;">
                         <div class="row g-0">
                             <div class="col-4 d-flex align-items-center">
+                                {% if profile.profile_image %}
+                                <img src="{{ profile.profile_image.url }}" width="200", height="200", class="img-fluid rounded-circle ps-2" alt="Profile Image">
+                                {% else %}
                                 <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" class="img-fluid rounded-circle ps-2" alt="Profile Image">
+                                {% endif %}
                             </div>
                             <div class="col-8">
                                 <div class="card-body">

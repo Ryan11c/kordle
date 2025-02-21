@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -59,3 +60,9 @@ class UpdateUserForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control' #Bootstrap hehe
             
+
+class UploadProfile(forms.ModelForm):
+    profile_image = forms.ImageField(label="Profile Picture")
+    class Meta:
+        model = Profile
+        fields = ('profile_image',)

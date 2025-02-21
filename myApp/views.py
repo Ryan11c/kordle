@@ -8,7 +8,7 @@ from.models import Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UpdateUserForm, SignUpForm
+from .forms import UpdateUserForm, SignUpForm, UploadProfile
 from .forms import SignUpForm
 from django.contrib.auth.models import User
 
@@ -184,10 +184,13 @@ def update_user(request):
         return redirect('login')
     #Set current user
     current_user = request.user  
-    form = UpdateUserForm(request.POST or None, instance=current_user)
-    if request.method == "POST" and form.is_valid():
-        form.save()
+    profile_user = Profile.objects.get(user__id=request.user.id)
+    profile_form = UploadProfile(request.POST or None, request.FILES or None, instance=profile_user)
+    user_form = UpdateUserForm(request.POST or None, request.FILES or None, instance=current_user)
+    if request.method == "POST" and user_form.is_valid() and profile_form.is_valid():
+        user_form.save()
+        profile_form.save()
         messages.success(request, "Successfully updated your profile.")
         return redirect('home')
 
-    return render(request, "update_user.html", {'form': form})
+    return render(request, "update_user.html", {'user_form': user_form, 'profile_form': profile_form})
