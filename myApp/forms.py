@@ -41,4 +41,21 @@ class SignUpForm(UserCreationForm):
             '<small>Enter the same password as before, for verification.</small>'
             '</span>'
         )
-        
+
+
+#Same thing as SignUpForm but remove the password and username so that when you update your profile
+#you do not have to make a new unique username everytime. However, this is not the most optimal
+class UpdateUserForm(forms.ModelForm):
+    email = forms.EmailField(label="Email Address", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
+    first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
+    last_name = forms.CharField(label="Last Name", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
+    
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')  #Do not include username and password as retyping password is too much work just to rest your profile I think
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateUserForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control' #Bootstrap hehe
+            

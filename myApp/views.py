@@ -8,8 +8,9 @@ from.models import Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django import forms
+from .forms import UpdateUserForm, SignUpForm
 from .forms import SignUpForm
+from django.contrib.auth.models import User
 
 
 #Helper function to load the JSON file
@@ -174,3 +175,19 @@ def register_user(request):
             return redirect('home')
         
     return render(request, "register.html", {'form': form})
+
+
+#For updating a specific profile. The form will be the UpdateUserForm.
+def update_user(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be logged in to edit your profile.")
+        return redirect('login')
+    #Set current user
+    current_user = request.user  
+    form = UpdateUserForm(request.POST or None, instance=current_user)
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Successfully updated your profile.")
+        return redirect('home')
+
+    return render(request, "update_user.html", {'form': form})
