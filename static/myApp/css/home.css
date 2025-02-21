@@ -1,11 +1,13 @@
 body {
     background-color: whitesmoke;
+    padding-bottom: 70px;
 }
 
 .title {
     text-align: center;
     font-weight: bold;
     font-size: 2rem;
+    color: black;
 }
   
 .userGuessForm {
@@ -95,6 +97,7 @@ body {
     font-size: 15px;
     width: 120px;
     max-height: 50px;
+    color: black;
 }
 
 #icon-display {
@@ -130,4 +133,3 @@ body {
       transform: translateZ(0);
     }
 }
-  
