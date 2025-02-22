@@ -50,6 +50,7 @@ body {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-shadow: 2px 2px 7px black;
 }
   
 .dropdown-list {
@@ -98,6 +99,7 @@ body {
     width: 120px;
     max-height: 50px;
     color: black;
+    text-shadow: 1px 1px 12px white;
 }
 
 #icon-display {

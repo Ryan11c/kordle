@@ -7,10 +7,10 @@ from .serializers import ChampionSerializer
 from.models import Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from .forms import UpdateUserForm, SignUpForm, UploadProfile
 from .forms import SignUpForm
-from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
 
 
 #Helper function to load the JSON file
@@ -194,3 +194,16 @@ def update_user(request):
         return redirect('home')
 
     return render(request, "update_user.html", {'user_form': user_form, 'profile_form': profile_form})
+
+
+@csrf_protect 
+def increment_wins(request):
+    if not request.user.is_authenticated:
+        #Just in case a user not logged in somehow reaches this view we can BLOCK them
+        return JsonResponse({"success": False, "error": "User not logged in"}, status=401)
+    if request.method == "POST":
+        profile = Profile.objects.get(user=request.user)
+        profile.wins += 1
+        profile.save()
+        return JsonResponse({"success": True, "wins": profile.wins})
+    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)

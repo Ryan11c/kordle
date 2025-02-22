@@ -30,6 +30,7 @@
             </tbody>
         </table>
     </div>
+    <input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
 </body>
 <script src="{% static 'myApp/js/home.js' %}"></script>
 {% endblock %}

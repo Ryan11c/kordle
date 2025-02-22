@@ -121,6 +121,21 @@ userGuessForm.addEventListener("submit", async event => {
 function sleep(seconds){
     return new Promise(resolve => setTimeout(resolve, seconds));
 }
+
+
+//Function to get CSRF token from cookies!!!!!!!!!!!!!!!!
+function getCSRFToken(){
+    let cookieValue = null;
+    const cookies = document.cookie.split(";");
+    for(let i = 0; i < cookies.length; i++){
+        const cookie = cookies[i].trim();
+        if(cookie.startsWith("csrftoken=")){
+            cookieValue = cookie.substring("csrftoken=".length, cookie.length);
+            break;
+        }
+    }
+    return cookieValue;
+}
   
 
 //This function displays which part of the champion criteria the user got correct
@@ -209,10 +224,35 @@ let row = tableBody.insertRow(0);
         releaseCell.classList.add("rotating-cell-incorrect");
     }
     await sleep(500);
+
     
+    //Read the hidden input from html and store it here o.o
+    const isUserLoggedIn = document.getElementById("isUserLoggedIn").value === "true";
     //Checking if the user won by comparing guessed champ id and answer champ id
-    if (champGuess.id === ansChamp.id) {
-      console.log("You Win");
+    if(champGuess.id === ansChamp.id){
+        alert("🎉 Congratulations! You guessed the champion correctly! 🎉");
+        console.log("You Win");
+        //Checking if the user is logged in. This is from the hidden input in home.html
+        if(!isUserLoggedIn){
+            console.log("User is not logged in.");
+            //Stop execution meaning don't make fetch request
+            return;
+        }
+        //If the user is logged in, this will run
+        //Send request to increment wins 
+        fetch("/increment_wins/", {method: "POST", headers: {"X-CSRFToken": getCSRFToken(), "Content-Type": "application/json"}})
+        //I am converting response to json here
+        .then(response => {
+            if(!response.ok){
+                throw new Error(`error: ${response.status}`);
+            }
+            return response.json(); 
+        })
+        //access data.wins
+        .then(data => {
+            if(data){
+                console.log(`Wins updated: ${data.wins}`);
+            }
+        })
     }
 }
-
