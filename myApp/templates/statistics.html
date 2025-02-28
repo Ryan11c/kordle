@@ -1,13 +1,17 @@
 {% extends "./base.html" %}
-{% block title %}Profile List{% endblock %}
+{% block title %}About{% endblock %}
 {% load static %}
+
 {% block content %}
-    <h1 class="text-center fs-1 fw-bold">Profile List</h1>
-    {% if profiles %}
+<body style="padding-bottom: 70px">
+    <div class="container mt-4 w-75">
+        <h1 class="text-center fs-1 fw-bold">Leaderboard</h1>
+        <div class="border border-dark p-3">
+            {% if profiles %}
         <div class="row justify-content-center">
             {% for profile in profiles %}
                 <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-                    <div class="card mb-4" style="max-width: 400px;">
+                    <div class="card mb-4" style="max-width: 700px;">
                         <div class="row g-0">
                             <div class="col-4 d-flex align-items-center">
                                 {% if profile.profile_image %}
@@ -19,9 +23,7 @@
                             <div class="col-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ profile.user.username }}</h5>
-                                    <p class="card-text text-muted">@{{ profile.user.username|lower }}</p>
                                     <p class="card-text"><strong>Wins:</strong> {{ profile.wins }}</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last Updated: {{ profile.date_modified }}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -32,4 +34,7 @@
         {% else %}
             <p class="text-center text-muted">No profiles found.</p>
         {% endif %}
+        </div>
+    </div>
+</body>
 {% endblock %}

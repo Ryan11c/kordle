@@ -125,10 +125,7 @@ class ChampionAPIView(APIView):
 
 #Show the user profiles in the html page
 def profile_list(request):
-    if request.user.is_authenticated:
-        profiles = Profile.objects.exclude(user=request.user)
-    else:
-        profiles = Profile.objects.all() 
+    profiles = Profile.objects.all() 
     return render(request, 'profile_list.html', {"profiles": profiles})
 
 
@@ -207,3 +204,10 @@ def increment_wins(request):
         profile.save()
         return JsonResponse({"success": True, "wins": profile.wins})
     return JsonResponse({"success": False, "error": "Invalid request"}, status=400)
+
+
+def statistics(request):
+     #This will pass the profile into the html by the amount of wins they have. It will be in descending order
+     #This is because we are using for loop to display pfp
+    profiles = Profile.objects.all().order_by('-wins') 
+    return render(request, "statistics.html", {'profiles': profiles})
