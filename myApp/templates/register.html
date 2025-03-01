@@ -3,16 +3,18 @@
 {% load static %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <h1>Register</h1>
-{% else %}
-    <div class="col-md-6 offset-md-3">
+<body style="padding-bottom: 70px">
+    {% if user.is_authenticated %}
         <h1>Register</h1>
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-{% endif %}
+    {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1>Register</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    {% endif %}
+</body>
 {% endblock %}

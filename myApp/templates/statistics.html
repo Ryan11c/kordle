@@ -8,32 +8,27 @@
         <h1 class="text-center fs-1 fw-bold">Leaderboard</h1>
         <div class="border border-dark p-3">
             {% if profiles %}
-        <div class="row justify-content-center">
-            {% for profile in profiles %}
-                <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-                    <div class="card mb-4" style="max-width: 700px;">
-                        <div class="row g-0">
-                            <div class="col-4 d-flex align-items-center">
-                                {% if profile.profile_image %}
-                                <img src="{{ profile.profile_image.url }}" width="200", height="200", class="img-fluid rounded-circle ps-2" alt="Profile Image">
-                                {% else %}
-                                <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" class="img-fluid rounded-circle ps-2" alt="Profile Image">
-                                {% endif %}
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ profile.user.username }}</h5>
-                                    <p class="card-text"><strong>Wins:</strong> {{ profile.wins }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        {% else %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Wins</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ profile.user.username }}</td>
+                        <td>{{ profile.wins }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
             <p class="text-center text-muted">No profiles found.</p>
-        {% endif %}
+            {% endif %}
         </div>
     </div>
 </body>
