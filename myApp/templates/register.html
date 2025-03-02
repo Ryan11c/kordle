@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<body style="padding-bottom: 70px">
+<body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     {% if user.is_authenticated %}
         <h1>Register</h1>
     {% else %}

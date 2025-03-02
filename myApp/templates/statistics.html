@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block content %}
-<body style="padding-bottom: 70px">
+<body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     <div class="container mt-4 w-75">
         <h1 class="text-center fs-1 fw-bold">Leaderboard</h1>
-        <div class="border border-dark p-3">
+        <div class="border border-dark p-3 bg-white">
             {% if profiles %}
             <table class="table table-striped">
                 <thead>

@@ -2,6 +2,7 @@
 {% block title %}Profile List{% endblock %}
 {% load static %}
 {% block content %}
+<body style="padding-bottom: 70px">
     <h1 class="text-center fs-1 fw-bold">Profile List</h1>
     {% if profiles %}
         <div class="row justify-content-center">
@@ -29,7 +30,8 @@
                 </div>
             {% endfor %}
         </div>
-        {% else %}
-            <p class="text-center text-muted">No profiles found.</p>
-        {% endif %}
+    {% else %}
+        <p class="text-center text-muted">No profiles found.</p>
+    {% endif %}
+</body>
 {% endblock %}

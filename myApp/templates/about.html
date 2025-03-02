@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block content %}
-<body style="padding-bottom: 70px">
+<body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     <div class="container mt-4 w-75">
         <h1 class="text-center fs-1 fw-bold">About Kordle</h1>
-        <div class="border border-dark p-3">
+        <div class="border border-dark p-3 bg-white">
             <section class="mt-4 text-start pb-2 ps-4">
                 <h2 class="fw-bold">Inspiration</h2>
                 <p>Kordle is inspired by <strong>LoLdle</strong> and <strong>Wordle</strong>, a game where you have to guess the champion or a word.
