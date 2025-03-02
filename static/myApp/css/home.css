@@ -21,15 +21,18 @@ body {
 .buttonHome {
     width: 80px;
     height: 70px;
+    box-shadow: 2px 2px 8px black;
     border-radius: 10px;
     font-weight: bold;
     color: whitesmoke;
     background-color: black;
-    transition: opacity 0.2s ease-in-out;
+    border: none;
+    transition: all 0.3s ease-in-out;
 }
 
 .buttonHome:hover{
-    opacity: 85%;
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8); 
 }
 
 #userInput ::placeholder{
@@ -50,7 +53,7 @@ body {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 2px 2px 7px black;
+    box-shadow: 2px 2px 8px black;
 }
   
 .dropdown-list {
@@ -64,10 +67,9 @@ body {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 8px black;
     list-style: none;
     padding: 0;
-    margin: 2px 0 0 0;
     display: none;
 }
   
@@ -80,17 +82,20 @@ body {
     background-color: #f9f9f9;
 }
   
-#champ-table {
+#idol-table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
 }
   
-#champ-table th, 
-#champ-table td {
-    border: 1px solid #ccc;
+#idol-table th, 
+#idol-table td {
+    border: 1px solid white;
     padding: 10px;
     text-align: center;
+    text-shadow: 1px 1px 1px rgb(255, 201, 255);
+    font-weight: bold;
+    color: black;
 }
   
 #topRow th {

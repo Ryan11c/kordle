@@ -1,29 +1,28 @@
 {% extends "./base.html" %}
-{% block title %}LoLWordle{% endblock %}
+{% block title %}Kpop Wordle{% endblock %}
 {% load static %}
 
 {% block content %}
-<body class="background-image" background="{% static 'myApp/images/background.png' %}">
+<body class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
     <div>
-        <p class="title">Guess Your Champion</p>
+        <p class="title">Guess Your Idol</p>
         <form class="userGuessForm">
             <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
                 placeholder="Enter Champion...">
             <ul class="dropdown-list" id="dropdownList"></ul>
             <button class="buttonHome" type="submit" id="submitButton">Guess</button>
         </form>
-        <table id="champ-table"> 
+        <table id="idol-table"> 
             <thead id="topRow">
                 <tr>
                     <th>Icon</th>
+                    <th>Group</th>
+                    <th>Birthday</th>
+                    <th>Height(cm)</th>
                     <th>Gender</th>
-                    <th>Resource</th>
-                    <th>Attack Type</th>
-                    <th>Lane</th>
-                    <th>Genre</th>
-                    <th>Region</th>
-                    <th>Release Date</th>
+                    <th>Company</th>
+                    <th>Nationality</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,5 +31,5 @@
     </div>
     <input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
 </body>
-<script src="{% static 'myApp/js/home.js' %}"></script>
+<script src="{% static 'myApp/js/kpopgame.js' %}"></script>
 {% endblock %}

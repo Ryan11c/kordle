@@ -17,10 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-from .views import ChampionAPIView
+from .views import IdolAPIView
 urlpatterns = [
    path('', views.home, name='home'),
-   path('api/champion/', ChampionAPIView.as_view(), name='champion-api'),
    path('profile_list/', views.profile_list, name='profile_list'),
    path('about/', views.about, name='about'),
    path('login/', views.login_user, name='login'),
@@ -29,4 +28,5 @@ urlpatterns = [
    path('update_user/', views.update_user, name='update_user'),
    path('increment_wins/', views.increment_wins, name='increment_wins'),
    path('statistics/', views.statistics, name='statistics'),
+   path('api/idol/', IdolAPIView.as_view(), name='idol-api'),
 ]
