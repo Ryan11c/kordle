@@ -11,7 +11,9 @@ from .forms import UpdateUserForm, SignUpForm, UploadProfile
 from .forms import SignUpForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
-
+from django.contrib.auth.models import User
+from django.db.models.functions import TruncDate
+from django.db.models import Count, Sum
 
 # #Helper function to load the JSON file
 # def load_champion_data():
@@ -195,3 +197,18 @@ class IdolAPIView(APIView):
 
         return Response({"random_idol": random_idol_serialized, "idol_list": serialized_idols},status=status.HTTP_200_OK)
     
+
+#API for signups chart. Just followed a tutorial nothing special
+def signup_chart_data(request):
+    signups = (User.objects.annotate(date=TruncDate("date_joined")) .values("date") .annotate(count=Count("id")) .order_by("date"))
+    labels = [signup["date"].strftime("%Y-%m-%d") for signup in signups]
+    values = [signup["count"] for signup in signups]
+    return JsonResponse({"labels": labels, "values": values})
+
+
+#Same here
+def wins_chart_data(request):
+    wins_per_day = (Profile.objects.annotate(date=TruncDate("date_modified")) .values("date") .annotate(total_wins=Sum("wins")) .order_by("date"))
+    labels = [entry["date"].strftime("%Y-%m-%d") for entry in wins_per_day]
+    values = [entry["total_wins"] for entry in wins_per_day]
+    return JsonResponse({"labels": labels, "values": values})

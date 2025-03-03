@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-{% block title %}Kpop Wordle{% endblock %}
+{% block title %}Kordle{% endblock %}
 {% load static %}
 
 {% block content %}
@@ -9,25 +9,27 @@
         <p class="title">Guess Your Idol</p>
         <form class="userGuessForm">
             <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
-                placeholder="Enter Champion...">
+                placeholder="Enter name...">
             <ul class="dropdown-list" id="dropdownList"></ul>
             <button class="buttonHome" type="submit" id="submitButton">Guess</button>
         </form>
-        <table id="idol-table"> 
-            <thead id="topRow">
-                <tr>
-                    <th>Icon</th>
-                    <th>Group</th>
-                    <th>Birthday</th>
-                    <th>Height(cm)</th>
-                    <th>Gender</th>
-                    <th>Company</th>
-                    <th>Nationality</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <table id="idol-table"> 
+                <thead id="topRow">
+                    <tr>
+                        <th>Icon</th>
+                        <th>Group</th>
+                        <th>Birthday</th>
+                        <th>Height(cm)</th>
+                        <th>Gender</th>
+                        <th>Company</th>
+                        <th>Nationality</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
     <input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
 </body>

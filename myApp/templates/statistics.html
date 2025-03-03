@@ -1,8 +1,9 @@
 {% extends "./base.html" %}
-{% block title %}About{% endblock %}
+{% block title %}Statistics{% endblock %}
 {% load static %}
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     <div class="container mt-4 w-75">
         <h1 class="text-center fs-1 fw-bold">Leaderboard</h1>
@@ -33,7 +34,18 @@
     </div>
 
     <div class="container mt-4 w-75">
-        <h1 class="text-center fs-1 fw-bold">Total Guesses</h1>
+        <h1 class="text-center fs-1 fw-bold">User Signups Over Time</h1>
+        <div class="border border-dark p-3 bg-white">
+            <canvas id="signupChart"></canvas>
+        </div>
+    </div>
+
+    <div class="container mt-4 w-75">
+        <h1 class="text-center fs-1 fw-bold">Total Wins Over Time</h1>
+        <div class="border border-dark p-3 bg-white">
+            <canvas id="winsChart"></canvas>
+        </div>
     </div>
 </body>
+<script src="{% static 'myApp/js/statistics.js' %}"></script>
 {% endblock %}

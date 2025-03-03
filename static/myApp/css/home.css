@@ -54,6 +54,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 2px 2px 8px black;
+    margin-right: 3px;
 }
   
 .dropdown-list {
@@ -96,6 +97,12 @@ body {
     text-shadow: 1px 1px 1px rgb(255, 201, 255);
     font-weight: bold;
     color: black;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    max-width: 100%;
 }
   
 #topRow th {
