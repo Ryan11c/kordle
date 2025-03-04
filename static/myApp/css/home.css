@@ -7,7 +7,8 @@ body {
     text-align: center;
     font-weight: bold;
     font-size: 2rem;
-    color: black;
+    color: white;
+    text-shadow: 2px 2px 2px black;
 }
   
 .userGuessForm {
@@ -94,9 +95,9 @@ body {
     border: 1px solid white;
     padding: 10px;
     text-align: center;
-    text-shadow: 1px 1px 1px rgb(255, 201, 255);
+    text-shadow: 2px 2px 2px black;
     font-weight: bold;
-    color: black;
+    color: white;
 }
 
 .table-container {
@@ -110,8 +111,8 @@ body {
     font-size: 15px;
     width: 120px;
     max-height: 50px;
-    color: black;
-    text-shadow: 1px 1px 12px white;
+    color: white;
+    text-shadow: 2px 2px 2px black;
 }
 
 #icon-display {
@@ -146,4 +147,131 @@ body {
       opacity: 1;
       transform: translateZ(0);
     }
+}
+/* background animation */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    filter: blur(220px);
+    z-index: -1;
+}
+
+.gradient {
+    position: absolute;
+    border-radius: 100%;
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.1, 0, 0.9, 1);
+}
+
+.gradient-1 {
+  background: rgb(245, 132, 224) none repeat scroll 0% 0% / auto padding-box border-box;
+  width: 700px;
+  height: 700px;
+  animation-duration: 15s;
+  opacity: 0.9;
+  left: 60%;
+  top: 40%;
+  z-index: -2;
+  animation-name: animation-gradient-1;
+}
+
+.gradient-2 {
+  background: rgb(153, 235, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+  width: 600px;
+  height: 600px;
+  animation-duration: 14s;
+  opacity: 0.9;
+  left: 40%;
+  top: 60%;
+  z-index: -1;
+  animation-name: animation-gradient-2;
+}
+
+.gradient-3 {
+  background: rgb(153, 0, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+  width: 500px;
+  height: 500px;
+  animation-duration: 14s;
+  opacity: 0.9;
+  left: 50%;
+  top: 50%;
+  z-index: -3;
+  animation-name: animation-gradient-3;
+}
+
+@keyframes animation-gradient-1 {
+  0% {
+    transform: translateY(-50%) translateX(-50%) rotate(-20deg) translateX(20%);
+  }
+  25% {
+    transform: translateY(-50%) translateX(-50%) skew(-15deg, -15deg)
+      rotate(80deg) translateX(30%);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-50%) rotate(180deg) translateX(25%);
+  }
+  75% {
+    transform: translateY(-50%) translateX(-50%) skew(15deg, 15deg)
+      rotate(240deg) translateX(15%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-50%) rotate(340deg) translateX(20%);
+  }
+}
+
+@keyframes animation-gradient-2 {
+  0% {
+    transform: translateY(-50%) translateX(-50%) rotate(40deg) translateX(-20%);
+  }
+  25% {
+    transform: translateY(-50%) translateX(-50%) skew(15deg, 15deg)
+      rotate(110deg) translateX(-5%);
+  }
+  50% {
+    transform: translateY(-50%) translateX(-50%) rotate(210deg) translateX(-35%);
+  }
+  75% {
+    transform: translateY(-50%) translateX(-50%) skew(-15deg, -15deg)
+      rotate(300deg) translateX(-10%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-50%) rotate(400deg) translateX(-20%);
+  }
+}
+
+@keyframes animation-gradient-3 {
+  0% {
+    transform: translateY(-50%) translateX(-50%) translateX(-15%)
+      translateY(10%);
+  }
+  20% {
+    transform: translateY(-50%) translateX(-50%) translateX(20%)
+      translateY(-30%);
+  }
+  40% {
+    transform: translateY(-50%) translateX(-50%) translateX(-25%)
+      translateY(-15%);
+  }
+  60% {
+    transform: translateY(-50%) translateX(-50%) translateX(30%) translateY(20%);
+  }
+  80% {
+    transform: translateY(-50%) translateX(-50%) translateX(5%) translateY(35%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(-50%) translateX(-15%)
+      translateY(10%);
+  }
 }

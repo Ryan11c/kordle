@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
-<body class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
-    <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
+<body>
     <div>
         <p class="title">Guess Your Idol</p>
         <form class="userGuessForm">
@@ -32,6 +32,11 @@
         </div>
     </div>
     <input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
+    <div class="wrapper">
+        <div class="gradient gradient-1"></div>
+        <div class="gradient gradient-2"></div>
+        <div class="gradient gradient-3"></div>
+      </div>
 </body>
 <script src="{% static 'myApp/js/kpopgame.js' %}"></script>
 {% endblock %}

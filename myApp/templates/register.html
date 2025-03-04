@@ -5,10 +5,10 @@
 {% block content %}
 <body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
     {% if user.is_authenticated %}
-        <h1>Register</h1>
+        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Already logged in</h1>
     {% else %}
         <div class="col-md-6 offset-md-3">
-            <h1>Register</h1>
+            <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Register</h1>
             <form method="POST" action="">
                 {% csrf_token %}
                 {{ form.as_p }}

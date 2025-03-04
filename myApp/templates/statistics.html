@@ -5,8 +5,8 @@
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body style="padding-bottom: 70px" class="background-image" background="{% static 'myApp/images/background2.jpg' %}">
-    <div class="container mt-4 w-75">
-        <h1 class="text-center fs-1 fw-bold">Leaderboard</h1>
+    <div class="container mt-4 w-100">
+        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Leaderboard</h1>
         <div class="border border-dark p-3 bg-white">
             {% if profiles %}
             <table class="table table-striped">
@@ -33,15 +33,15 @@
         </div>
     </div>
 
-    <div class="container mt-4 w-75">
-        <h1 class="text-center fs-1 fw-bold">User Signups Over Time</h1>
+    <div class="container mt-4 w-100">
+        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">User Signups Over Time</h1>
         <div class="border border-dark p-3 bg-white">
             <canvas id="signupChart"></canvas>
         </div>
     </div>
 
-    <div class="container mt-4 w-75">
-        <h1 class="text-center fs-1 fw-bold">Total Wins Over Time</h1>
+    <div class="container mt-4 w-100">
+        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Total Wins Over Time</h1>
         <div class="border border-dark p-3 bg-white">
             <canvas id="winsChart"></canvas>
         </div>

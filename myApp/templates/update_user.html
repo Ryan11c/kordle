@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="col-md-6 offset-md-3">
-        <h1>Edit Profile</h1>
+        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Edit Profile</h1>
         <form method="POST" action="{% url 'update_user' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_form.as_p }}
