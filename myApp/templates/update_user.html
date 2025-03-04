@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block content %}
+<body style="padding-bottom: 70px; background-color: rgb(255, 216, 255);">
     <div class="col-md-6 offset-md-3">
         <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Edit Profile</h1>
         <form method="POST" action="{% url 'update_user' %}" enctype="multipart/form-data">
@@ -12,4 +13,5 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+</body>
 {% endblock %}
