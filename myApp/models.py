@@ -30,3 +30,17 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
 
 post_save.connect(create_profile, sender=User)
+
+
+#track request per day
+class RequestLog(models.Model):
+    #logs the request date
+    date = models.DateField(auto_now=True)
+    #number of requests
+    count = models.PositiveIntegerField(default=1)  
+    class Meta:
+        #Ensures only one entry per day
+        unique_together = ["date"]  
+    def __str__(self):
+        return f"{self.date} - {self.count} requests"
+    

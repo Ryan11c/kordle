@@ -8,9 +8,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('hitcount', '0005_alter_blacklistip_id_alter_blacklistuseragent_id_and_more'),
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
@@ -33,7 +31,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(default='Homepage', max_length=255)),
-                ('hit_count_generic', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='homepage_hitcount', to='hitcount.hitcount')),
             ],
         ),
     ]

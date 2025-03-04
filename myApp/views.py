@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import IdolSerializer
-from.models import Profile
+from.models import Profile, RequestLog
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UpdateUserForm, SignUpForm, UploadProfile
@@ -205,10 +205,9 @@ def signup_chart_data(request):
     values = [signup["count"] for signup in signups]
     return JsonResponse({"labels": labels, "values": values})
 
-
-#Same here
-def wins_chart_data(request):
-    wins_per_day = (Profile.objects.annotate(date=TruncDate("date_modified")) .values("date") .annotate(total_wins=Sum("wins")) .order_by("date"))
-    labels = [entry["date"].strftime("%Y-%m-%d") for entry in wins_per_day]
-    values = [entry["total_wins"] for entry in wins_per_day]
+#requests per day chart
+def requests_chart_data(request):
+    requests_per_day = RequestLog.objects.values("date").annotate(total_requests=Sum("count")).order_by("date")
+    labels = [entry["date"].strftime("%Y-%m-%d") for entry in requests_per_day]
+    values = [entry["total_requests"] for entry in requests_per_day]
     return JsonResponse({"labels": labels, "values": values})

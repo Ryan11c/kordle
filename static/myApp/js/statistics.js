@@ -27,16 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error loading signup chart:", error));
 
-    fetch("/wins-chart/")
+        fetch("/requests-chart/")
         .then(response => response.json())
         .then(data => {
-            const ctx = document.getElementById('winsChart').getContext('2d');
+            const ctx = document.getElementById('requestsChart').getContext('2d');
             new Chart(ctx, {
-                type: 'bar', 
+                type: 'line', 
                 data: {
                     labels: data.labels,
                     datasets: [{
-                        label: 'Total Wins Per Day',
+                        label: 'Requests Per Day',
                         data: data.values,
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 1)',
@@ -52,5 +52,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         })
-        .catch(error => console.error("Error loading wins chart:", error));
+        .catch(error => console.error("Error loading requests chart:", error));
 });

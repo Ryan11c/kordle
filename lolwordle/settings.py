@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'myApp',
-    'hitcount',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -60,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'myApp.middleware.RequestLoggerMiddleware',
 ]
 
 ROOT_URLCONF = 'lolwordle.urls'

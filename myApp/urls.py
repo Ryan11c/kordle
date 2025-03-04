@@ -30,5 +30,5 @@ urlpatterns = [
    path('statistics/', views.statistics, name='statistics'),
    path('api/idol/', IdolAPIView.as_view(), name='idol-api'), #api for idols: random and list of idols
    path("signup-chart/", views.signup_chart_data, name="signup-chart"), #api for signups using chart.js
-   path("wins-chart/", views.wins_chart_data, name="wins-chart"), #api for wins using chart.js
+   path("requests-chart/", views.requests_chart_data, name="requests-chart"), #api for requests using chart.js
 ]

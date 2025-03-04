@@ -138,10 +138,9 @@ async function compareIdolInfo(idolGuess, ansIdol) {
     const iconCell = row.insertCell(-1);
     const idolImg = document.createElement("img");
     idolImg.src = idolGuess.image ? `/static/myApp/images/facecard/${idolGuess.name.replace(' ', '_').toLowerCase()}.jpg` : "/static/images/facecard/default.jpg";
-    idolImg.width = 150;
-    idolImg.height = 150;
+    idolImg.classList.add("idol-img");
     iconCell.appendChild(idolImg);
-    
+
     //Group
     const groupCell = row.insertCell(-1);
     groupCell.textContent = idolGuess.group;
