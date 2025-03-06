@@ -26,14 +26,7 @@ class SignUpForm(UserCreationForm):
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
         self.fields['password1'].label = ''
-        self.fields['password1'].help_text = (
-            '<ul class="form-text text-muted small">'
-            '<li>Your password can\'t be too similar to your other personal information.</li>'
-            '<li>Your password must contain at least 8 characters.</li>'
-            '<li>Your password can\'t be a commonly used password.</li>'
-            '<li>Your password can\'t be entirely numeric.</li>'
-            '</ul>'
-        )
+        self.fields['password1'].help_text = ''
         self.fields['password2'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
         self.fields['password2'].label = ''
@@ -59,6 +52,12 @@ class UpdateUserForm(forms.ModelForm):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control' #Bootstrap hehe
+    
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.exclude(pk=self.instance.pk).filter(email=email).exists():
+            raise forms.ValidationError("This email is already in use.")
+        return email  #Return the validated email
             
 
 class UploadProfile(forms.ModelForm):
