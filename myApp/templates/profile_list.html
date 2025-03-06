@@ -2,13 +2,13 @@
 {% block title %}Profile List{% endblock %}
 {% load static %}
 {% block content %}
-<body style="padding-bottom: 70px; background-color: rgb(255, 216, 255);">
+<body style="padding-bottom: 70px; background-color: rgb(213, 213, 213);">
     <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Profile List</h1>
     {% if profiles %}
         <div class="row justify-content-center">
             {% for profile in profiles %}
                 <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-                    <div class="card mb-4 bg-white border-dark" style="max-width: 400px;">
+                    <div class="card mb-4 bg-white border-dark" style="max-width: 400px; box-shadow: 0px 0px 20px rgb(157, 242, 255, 0.9), 0px 0px 30px rgba(255, 157, 242, 0.8);">
                         <div class="row g-0">
                             <div class="col-4 d-flex align-items-center">
                                 {% if profile.profile_image %}

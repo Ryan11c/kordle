@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block content %}
-<body style="padding-bottom: 70px; background-color: rgb(255, 216, 255);">
+<body style="padding-bottom: 70px; background-color: rgb(213, 213, 213);">
     <div class="container mt-4 w-75">
         <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">About Kordle</h1>
-        <div class="border border-dark p-3 bg-white">
+        <div class="border border-dark p-3 bg-white" style="box-shadow: 0px 0px 50px rgb(157, 242, 255, 0.9), 0px 0px 60px rgba(255, 157, 242, 0.8);">
             <section class="mt-4 text-start pb-2 ps-4">
                 <h2 class="fw-bold">Inspiration</h2>
                 <p><strong>Kordle</strong> is inspired by <strong>LoLdle</strong> and <strong>Wordle</strong>, a game where you have to guess the champion or a word.
@@ -16,8 +16,10 @@
             <section class="mt-4 text-start pb-2 ps-4">
                 <h2 class="fw-bold">How to Play</h2>
                 <p>Enter a idol's name in the text box and click <strong>Guess</strong> to submit your answer. The game provides visual feedback through color-coded tiles:</p>
-                <p><span class="text-success fw-bold">Green</span>: The category is correct.</p>
-                <p><span class="text-danger fw-bold">Red</span>: The category is incorrect.</p>
+                <p><span class="text-success fw-bold">Green</span>: The category is correct. <br> 
+                   <span class="text-danger fw-bold">Red</span>: The category is incorrect. <br>
+                   <span class="fw-bold">↑</span> (up arrow): The answer is higher then the guess. <br>
+                   <span class="fw-bold">↓</span> (down arrow): The answer is lower then the guess.</p>
                 <p>If all the tiles are green, you guessed the correct idol! An <strong>example</strong> is shown below:</p>
                 <img src="{% static 'myApp/images/howtoplay.png' %}" style="width: 100%;">
                 <p>Use your Kpop knowledge to guess the idol!</p>
@@ -31,7 +33,7 @@
 
             <section class="mt-4 text-start pb-2 ps-4">
                 <h2 class="fw-bold">Current Groups in the Game</h2>
-                <p>NJZ, IVE, AESPA, LE SSERAFIM, BLACKPINK, TWICE</p>
+                <p>NJZ, IVE, AESPA, LE SSERAFIM, BLACKPINK, TWICE, RED VELVET, (G)I-DLE, ITZY, ILLIT, KISS OF LIFE,</p>
             </section>
 
             <section class="mt-4 text-start pb-2 ps-4">

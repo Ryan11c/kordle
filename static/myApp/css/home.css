@@ -205,7 +205,7 @@ body {
   background: rgb(245, 132, 224) none repeat scroll 0% 0% / auto padding-box border-box;
   width: 700px;
   height: 700px;
-  animation-duration: 15s;
+  animation-duration: 10s;
   opacity: 0.9;
   left: 65%;
   top: 40%;
@@ -217,7 +217,7 @@ body {
   background: rgb(153, 235, 255) none repeat scroll 0% 0% / auto padding-box border-box;
   width: 600px;
   height: 600px;
-  animation-duration: 14s;
+  animation-duration: 10s;
   opacity: 0.9;
   left: 35%;
   top: 60%;
@@ -229,7 +229,7 @@ body {
   background: rgb(153, 0, 255) none repeat scroll 0% 0% / auto padding-box border-box;
   width: 500px;
   height: 500px;
-  animation-duration: 14s;
+  animation-duration: 10s;
   opacity: 0.9;
   left: 50%;
   top: 50%;

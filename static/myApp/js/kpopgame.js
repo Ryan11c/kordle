@@ -155,11 +155,19 @@ async function compareIdolInfo(idolGuess, ansIdol) {
     //Birthday
     const birthdayCell = row.insertCell(-1);
     birthdayCell.textContent = idolGuess.birthday;
-    if(idolGuess.birthday === ansIdol.birthday){
+    //Make birthdays to Date objects for comparison
+    let guessedDate = new Date(idolGuess.birthday);
+    let answerDate = new Date(ansIdol.birthday);
+    if(guessedDate.getTime() === answerDate.getTime()){
         birthdayCell.classList.add("rotating-cell-correct");
     }
     else{
         birthdayCell.classList.add("rotating-cell-incorrect");
+        //Arrow for higher or lower birthdays
+        let arrowIndicator = document.createElement("span");
+        arrowIndicator.textContent = guessedDate < answerDate ? "↑" : "↓"; 
+        arrowIndicator.style.marginLeft = "8px";
+        birthdayCell.appendChild(arrowIndicator);
     }
     await sleep(500);
 
@@ -171,6 +179,10 @@ async function compareIdolInfo(idolGuess, ansIdol) {
     }
     else{
         heightCell.classList.add("rotating-cell-incorrect");
+        let arrowIndicator = document.createElement("span");
+        arrowIndicator.textContent = idolGuess.height < ansIdol.height ? "↑" : "↓";
+        arrowIndicator.style.marginLeft = "8px"; 
+        heightCell.appendChild(arrowIndicator);
     }
     await sleep(500);
 

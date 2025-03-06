@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     datasets: [{
                         label: 'User Signups',
                         data: data.values,
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(149, 211, 255, 0.5)',
+                        borderColor: 'rgb(61, 187, 255)',
                         borderWidth: 2,
                         fill: true
                     }]
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     datasets: [{
                         label: 'Requests Per Day',
                         data: data.values,
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(149, 211, 255, 0.5)',
+                        borderColor: 'rgb(61, 187, 255)',
                         borderWidth: 2,
                         fill: true
                     }]
