@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block content %}
-<body style="padding-bottom: 70px; background-color: rgb(213, 213, 213);">
+<body style="background-color: rgb(213, 213, 213);">
 {% if user.is_authenticated %}
     <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Already logged in</h1>
 {% else %}
-    <section class="vh-100">
+    <section class="vh-100" style="margin-bottom: 75px;">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center bg-white" style="border-radius: 25px; height: 600px !important;">
                 <div class="col-md-9 col-lg-6 col-xl-5">
@@ -25,7 +25,7 @@
                         <div class="mb-3">
                             <input type="password" class="form-control" name="password" placeholder="Enter your password" autocomplete="current-password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-dark">Login</button>
                         <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{% url 'register' %}"
                         class="link-danger">Register</a></p>
                     </form>

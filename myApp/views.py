@@ -169,7 +169,7 @@ def increment_wins(request):
 def statistics(request):
      #This will pass the profile into the html by the amount of wins they have. It will be in descending order
      #This is because we are using for loop to display pfp
-    profiles = Profile.objects.all().order_by('-wins') 
+    profiles = Profile.objects.order_by('-wins')[:10]
     return render(request, "statistics.html", {'profiles': profiles})
 
 

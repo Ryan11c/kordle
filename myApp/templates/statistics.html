@@ -4,46 +4,48 @@
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<body style="padding-bottom: 70px; background-color: rgb(213, 213, 213);">
-    <div class="container mt-4 w-100">
-        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Leaderboard</h1>
-        <div class="border border-dark p-3 bg-white">
-            {% if profiles %}
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Wins</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for profile in profiles %}
-                    <tr>
-                        <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ profile.user.username }}</td>
-                        <td>{{ profile.wins }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-            <p class="text-center text-muted">No profiles found.</p>
-            {% endif %}
+<body style="background-color: rgb(213, 213, 213);">
+    <div class="section" style="margin-bottom: 75px;">
+        <div class="container mt-4 w-100">
+            <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Leaderboard</h1>
+            <div class="border border-dark p-3 bg-white">
+                {% if profiles %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Wins</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for profile in profiles %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ profile.user.username }}</td>
+                            <td>{{ profile.wins }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p class="text-center text-muted">No profiles found.</p>
+                {% endif %}
+            </div>
         </div>
-    </div>
 
-    <div class="container mt-4 w-100">
-        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">User Signups Over Time</h1>
-        <div class="border border-dark p-3 bg-white">
-            <canvas id="signupChart"></canvas>
+        <div class="container mt-4 w-100">
+            <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">User Signups Over Time</h1>
+            <div class="border border-dark p-3 bg-white">
+                <canvas id="signupChart"></canvas>
+            </div>
         </div>
-    </div>
 
-    <div class="container mt-4 w-100">
-        <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Requests per day</h1>
-        <div class="border border-dark p-3 bg-white">
-            <canvas id="requestsChart"></canvas>
+        <div class="container mt-4 w-100">
+            <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Requests per day</h1>
+            <div class="border border-dark p-3 bg-white">
+                <canvas id="requestsChart"></canvas>
+            </div>
         </div>
     </div>
 </body>

@@ -2,19 +2,19 @@
 {% block title %}Profile List{% endblock %}
 {% load static %}
 {% block content %}
-<body style="padding-bottom: 70px; background-color: rgb(213, 213, 213);">
+<body style="background-color: rgb(213, 213, 213);">
     <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Profile List</h1>
     {% if profiles %}
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="margin-bottom: 75px;">
             {% for profile in profiles %}
                 <div class="col-md-6 col-lg-3 d-flex justify-content-center">
                     <div class="card mb-4 bg-white border-dark" style="max-width: 400px;">
                         <div class="row g-0">
                             <div class="col-4 d-flex align-items-center">
                                 {% if profile.profile_image %}
-                                <img src="{{ profile.profile_image.url }}" width="200", height="200", class="img-fluid rounded-circle ps-2" alt="Profile Image">
+                                <img src="{{ profile.profile_image.url }}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
                                 {% else %}
-                                <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" class="img-fluid rounded-circle ps-2" alt="Profile Image">
+                                <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
                                 {% endif %}
                             </div>
                             <div class="col-8">

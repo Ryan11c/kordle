@@ -8,7 +8,7 @@ function showSuggestions(input){
         return;
     }
     //Fetch data from Django API for idols
-    fetch("http://127.0.0.1:8000/api/idol/")
+    fetch(API_IDOL_URL)
         .then(response => response.json())
         .then(data => {
             //Access the list of idols
@@ -48,7 +48,7 @@ const isUsed = {};
 //Load the idol data to idolList and ansIdol so that I can use it for my game logic
 function loadIdols() {
     //Fetch data from my API
-    fetch("http://127.0.0.1:8000/api/idol/")
+    fetch(API_IDOL_URL)
         .then(response => response.json())
         .then(data => {
             //Store idols in idolList
