@@ -137,7 +137,7 @@ async function compareIdolInfo(idolGuess, ansIdol) {
     //Name and Image cell
     const iconCell = row.insertCell(-1);
     const idolImg = document.createElement("img");
-    idolImg.src = idolGuess.image ? `/static/myApp/images/facecard/${idolGuess.name.replace(' ', '_').toLowerCase()}.jpg` : "/static/images/facecard/default.jpg";
+    idolImg.src = `/static/myApp/images/facecard/${idolGuess.name.replace(' ', '_').toLowerCase()}.jpg`;
     idolImg.classList.add("idol-img");
     iconCell.appendChild(idolImg);
 
@@ -223,8 +223,19 @@ async function compareIdolInfo(idolGuess, ansIdol) {
     const isUserLoggedIn = document.getElementById("isUserLoggedIn").value === "true";
     //Checking if the user won by comparing guessed idol name and answer idol name
     if(idolGuess.name === ansIdol.name){
-        alert("🎉 Congratulations! You guessed the idol correctly! 🎉");
+        //this is popup-js implementation. I want to use this pop up for when the user guesses the correct idol. I followed
+        //the documentation here: https://popup-js.readthedocs.io/en/latest/usage/
+        const ansImage = `/static/myApp/images/facecard/${ansIdol.name.replace(' ', '_').toLowerCase()}.jpg`;
+        const myPopup = new Popup({
+            id: "my-popup",
+            title: "You Win!",
+            content: `
+                <p>Correct Answer: <strong>${ansIdol.name}</strong></p>
+                <img src="${ansImage}" alt="${ansIdol.name}" style="width:100px; height:100px; border-radius:10px;">`,
+        });
+        myPopup.show();
         console.log("You Win");
+
         //Checking if the user is logged in. This is from the hidden input in home.html
         if(!isUserLoggedIn){
             console.log("User is not logged in.");

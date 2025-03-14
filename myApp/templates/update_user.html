@@ -4,7 +4,7 @@
 
 {% block content %}
 <body style="background-color: rgb(213, 213, 213);">
-    <div class="col-md-6 offset-md-3" style="margin-bottom: 75px;">
+    <div class="container mt-4 w-75" style="margin-bottom: 75px;">
         <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Edit Profile</h1>
         <form method="POST" action="{% url 'update_user' %}" enctype="multipart/form-data">
             {% csrf_token %}
