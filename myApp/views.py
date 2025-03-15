@@ -10,10 +10,13 @@ from django.contrib import messages
 from .forms import UpdateUserForm, SignUpForm, UploadProfile
 from .forms import SignUpForm
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 from django.db.models.functions import TruncDate
 from django.db.models import Count, Sum
+from django.core.paginator import Paginator
 
 # #Helper function to load the JSON file
 # def load_champion_data():
@@ -84,9 +87,13 @@ def home(request):
     
 
 #Show the user profiles in the html page
+#followed this documentation: https://docs.djangoproject.com/en/5.1/topics/pagination/
 def profile_list(request):
-    profiles = Profile.objects.all() 
-    return render(request, 'profile_list.html', {"profiles": profiles})
+    profiles = Profile.objects.all()
+    paginator = Paginator(profiles, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request, "profile_list.html", {"page_obj": page_obj})
 
 
 #The about page where I will put the description
@@ -112,6 +119,7 @@ def login_user(request):
 
 
 #Just using django's built in logout feature. Super duper easy
+@login_required
 def logout_user(request):
     logout(request)
     messages.success(request, ("You have been logged out."))
@@ -199,6 +207,8 @@ class IdolAPIView(APIView):
     
 
 #API for signups chart. Just followed a tutorial nothing special
+#cache for 5 minutes
+@cache_page(60 * 5)  
 def signup_chart_data(request):
     signups = (User.objects.annotate(date=TruncDate("date_joined")) .values("date") .annotate(count=Count("id")) .order_by("date"))
     labels = [signup["date"].strftime("%Y-%m-%d") for signup in signups]
@@ -206,6 +216,8 @@ def signup_chart_data(request):
     return JsonResponse({"labels": labels, "values": values})
 
 #requests per day chart
+#cache for 5 minutes
+@cache_page(60 * 5)
 def requests_chart_data(request):
     requests_per_day = RequestLog.objects.values("date").annotate(total_requests=Sum("count")).order_by("date")
     labels = [entry["date"].strftime("%Y-%m-%d") for entry in requests_per_day]
