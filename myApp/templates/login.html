@@ -11,8 +11,10 @@
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center bg-white" style="border-radius: 25px; height: 600px !important;">
                 <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                    class="img-fluid" alt="Sample image">
+                    <div class="text-center mb-4">
+                        <h1 class="display-4 fw-bold">Welcome back</h1>
+                        <p class="fs-5">Sign in to save your progress!</p>
+                    </div>
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form method="POST" action="{% url 'login' %}">

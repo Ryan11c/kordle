@@ -5,6 +5,7 @@
 <body style="background-color: rgb(213, 213, 213);">
     <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Profile List</h1>
     {% if profiles %}
+    <div class="min-vh-100">
         <div class="row justify-content-center" style="margin-bottom: 75px;">
             {% for profile in profiles %}
                 <div class="col-md-6 col-lg-3 d-flex justify-content-center">
@@ -29,6 +30,7 @@
                 </div>
             {% endfor %}
         </div>
+    </div>
     {% else %}
         <p class="text-center text-muted">No profiles found.</p>
     {% endif %}
