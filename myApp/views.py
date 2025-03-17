@@ -13,10 +13,12 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 from django.db.models.functions import TruncDate
 from django.db.models import Count, Sum
 from django.core.paginator import Paginator
+from rest_framework.permissions import IsAdminUser
 
 # #Helper function to load the JSON file
 # def load_champion_data():
@@ -189,6 +191,7 @@ def load_idol_data():
 
 
 class IdolAPIView(APIView):
+    permission_classes = [IsAdminUser]
     def get(self, request):
         #Load idols from local JSON
         idols = load_idol_data()  
@@ -209,6 +212,7 @@ class IdolAPIView(APIView):
 #API for signups chart. Just followed a tutorial nothing special
 #cache for 5 minutes
 @cache_page(60 * 5)  
+@staff_member_required
 def signup_chart_data(request):
     signups = (User.objects.annotate(date=TruncDate("date_joined")) .values("date") .annotate(count=Count("id")) .order_by("date"))
     labels = [signup["date"].strftime("%Y-%m-%d") for signup in signups]
@@ -218,6 +222,7 @@ def signup_chart_data(request):
 #requests per day chart
 #cache for 5 minutes
 @cache_page(60 * 5)
+@staff_member_required
 def requests_chart_data(request):
     requests_per_day = RequestLog.objects.values("date").annotate(total_requests=Sum("count")).order_by("date")
     labels = [entry["date"].strftime("%Y-%m-%d") for entry in requests_per_day]
