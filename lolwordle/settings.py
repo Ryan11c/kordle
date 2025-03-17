@@ -47,6 +47,33 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        #limit for anonymous users
+        'rest_framework.throttling.AnonRateThrottle',  
+        #limit for authenticated users
+        'rest_framework.throttling.UserRateThrottle',  
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        #limit unauthenticated users to 75 requests per minute
+        'anon': '75/minute',  
+        #limit authenticated users to 150 requests per minute
+        'user': '150/minute',  
+    }
+}
+
+#enable the Browsable API only during development
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append(
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    )
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
