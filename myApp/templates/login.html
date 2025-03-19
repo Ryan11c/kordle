@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block content %}
-<body style="background-color: rgb(213, 213, 213);">
 {% if user.is_authenticated %}
     <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Already logged in</h1>
 {% else %}
@@ -36,5 +35,4 @@
         </div>
     </section>
 {% endif %}
-</body>
 {% endblock %}

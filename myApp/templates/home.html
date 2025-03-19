@@ -4,40 +4,38 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'myApp/css/home.css' %}">
-<body>
-    <div class="body-wrapper min-vh-100">
-        <p class="title">Guess Your Idol</p>
-        <form class="userGuessForm">
-            <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
-                placeholder="Enter name...">
-            <ul class="dropdown-list" id="dropdownList"></ul>
-            <button class="buttonHome" type="submit" id="submitButton">Guess</button>
-        </form>
-        <div class="table-container">
-            <table id="idol-table"> 
-                <thead id="topRow">
-                    <tr>
-                        <th>Icon</th>
-                        <th>Group</th>
-                        <th>Birthday</th>
-                        <th>Height(cm)</th>
-                        <th>Gender</th>
-                        <th>Company</th>
-                        <th>Nationality</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+<div class="body-wrapper min-vh-100">
+    <p class="title">Guess Your Idol</p>
+    <form class="userGuessForm">
+        <input type="text" id="userInput" autocomplete="off" class="userGuessInput" oninput="showSuggestions(this.value)"
+            placeholder="Enter name...">
+        <ul class="dropdown-list" id="dropdownList"></ul>
+        <button class="buttonHome" type="submit" id="submitButton">Guess</button>
+    </form>
+    <div class="table-container">
+        <table id="idol-table"> 
+            <thead id="topRow">
+                <tr>
+                    <th>Icon</th>
+                    <th>Group</th>
+                    <th>Birthday</th>
+                    <th>Height(cm)</th>
+                    <th>Gender</th>
+                    <th>Company</th>
+                    <th>Nationality</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
-    <input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
-    <div class="wrapper">
-        <div class="gradient gradient-1"></div>
-        <div class="gradient gradient-2"></div>
-        <div class="gradient gradient-3"></div>
-      </div>
-</body>
+</div>
+<input type="hidden" id="isUserLoggedIn" value="{{ user.is_authenticated|lower }}">
+<div class="wrapper">
+    <div class="gradient gradient-1"></div>
+    <div class="gradient gradient-2"></div>
+    <div class="gradient gradient-3"></div>
+</div>
 <script>
     const API_IDOL_URL = "{% url 'idol-api' %}";
 </script>

@@ -2,75 +2,73 @@
 {% block title %}Profile List{% endblock %}
 {% load static %}
 {% block content %}
-<body style="background-color: rgb(213, 213, 213);">
-    <h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Profile List</h1>
-    {% if page_obj %}
-    <div class="min-vh-100">
-        <div class="row justify-content-center" style="margin-bottom: 75px;">
-            {% for profile in page_obj %}
-                <div class="col-md-6 col-lg-3 d-flex justify-content-center">
-                    <div class="card mb-4 bg-white border-dark" style="max-width: 400px;">
-                        <div class="row g-0">
-                            <div class="col-4 d-flex align-items-center">
-                                {% if profile.profile_image %}
-                                <img src="{{ profile.profile_image.url }}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
-                                {% else %}
-                                <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
-                                {% endif %}
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ profile.user.username }}</h5>
-                                    <p class="card-text"><strong>Wins:</strong> {{ profile.wins }}</p>
-                                    <p class="card-text"><small class="text-body-secondary">Last Updated: {{ profile.date_modified }}</small></p>
-                                </div>
+<h1 class="text-center fs-1 fw-bold text-black" style="text-shadow: 1px 1px 6px white;">Profile List</h1>
+{% if page_obj %}
+<div class="min-vh-100">
+    <div class="row justify-content-center" style="margin-bottom: 75px;">
+        {% for profile in page_obj %}
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center">
+                <div class="card mb-4 bg-white border-dark" style="max-width: 400px;">
+                    <div class="row g-0">
+                        <div class="col-4 d-flex align-items-center">
+                            {% if profile.profile_image %}
+                            <img src="{{ profile.profile_image.url }}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
+                            {% else %}
+                            <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" width="80", height="80", class="ms-2 rounded-circle" alt="Profile Image">
+                            {% endif %}
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ profile.user.username }}</h5>
+                                <p class="card-text"><strong>Wins:</strong> {{ profile.wins }}</p>
+                                <p class="card-text"><small class="text-body-secondary">Last Updated: {{ profile.date_modified }}</small></p>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-        <!-- Followed this documentation to incorporate page navigation: https://docs.djangoproject.com/en/5.1/topics/pagination/-->
-        <div class="d-flex justify-content-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                                &laquo; Previous
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <span class="page-link">&laquo; Previous</span>
-                        </li>
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                        {% if page_obj.number == num %}
-                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                        {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                                Next &raquo;
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item disabled">
-                            <span class="page-link">Next &raquo;</span>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+            </div>
+        {% endfor %}
     </div>
-    {% else %}
-        <p class="text-center text-muted">No profiles found.</p>
-    {% endif %}
-</body>
+    <!-- Followed this documentation to incorporate page navigation: https://docs.djangoproject.com/en/5.1/topics/pagination/-->
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            &laquo; Previous
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo; Previous</span>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            Next &raquo;
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Next &raquo;</span>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% else %}
+    <p class="text-center text-muted">No profiles found.</p>
+{% endif %}
 {% endblock %}
