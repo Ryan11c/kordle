@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
+from django.core.exceptions import ValidationError
 
 
 class SignUpForm(UserCreationForm):
@@ -36,6 +37,19 @@ class SignUpForm(UserCreationForm):
             '</span>'
         )
 
+#making sure the image is jpeg/png for security reasons
+def validate_image_format(image):
+    allowed_types = ['image/jpeg', 'image/png']
+    if getattr(image, 'content_type', None) not in allowed_types:
+        raise ValidationError("Only JPEG and PNG images are allowed.")
+    
+#making sure that the image is not too large which might slow down performance
+def validate_image_size(image):
+    #this is 2mb limit
+    max_size = 2 * 1024 * 1024  
+    if getattr(image, 'size', 0) > max_size:
+        raise ValidationError("Profile picture cannot exceed 2MB.")
+
 
 #Same thing as SignUpForm but remove the password and username so that when you update your profile
 #you do not have to make a new unique username everytime. However, this is not the most optimal
@@ -46,7 +60,7 @@ class UpdateUserForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email')  #Do not include username and password as retyping password is too much work just to rest your profile I think
+        fields = ('first_name', 'last_name', 'email')  #Do not include password as retyping password is too much work just to rest your profile I think
 
     def __init__(self, *args, **kwargs):
         super(UpdateUserForm, self).__init__(*args, **kwargs)
@@ -61,7 +75,9 @@ class UpdateUserForm(forms.ModelForm):
             
 
 class UploadProfile(forms.ModelForm):
-    profile_image = forms.ImageField(label="Profile Picture")
+    #implemented validation for security reasons!
+    profile_image = forms.ImageField(label="Profile Picture", required=False, validators=[validate_image_format, validate_image_size], widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Profile
         fields = ('profile_image',)
