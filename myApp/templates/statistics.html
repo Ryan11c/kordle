@@ -21,7 +21,14 @@
                     {% for profile in profiles %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ profile.user.username }}</td>
+                        <td>
+                            {% if profile.profile_image %}
+                            <img src="{{ profile.profile_image.url }}" width="30", height="30", class="ms-2 rounded-circle" alt="Profile Image">
+                            {% else %}
+                            <img src="{% static 'myApp/images/7ayjc8s4j2n61.png' %}" width="30", height="30", class="ms-2 rounded-circle" alt="Profile Image">
+                            {% endif %}
+                            {{ profile.user.username }}
+                        </td>
                         <td>{{ profile.wins }}</td>
                     </tr>
                     {% endfor %}
