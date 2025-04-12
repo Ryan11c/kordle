@@ -28,44 +28,44 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
-    <!-- Followed this documentation to incorporate page navigation: https://docs.djangoproject.com/en/5.1/topics/pagination/-->
-    <div class="d-flex justify-content-center">
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                            &laquo; Previous
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">&laquo; Previous</span>
-                    </li>
-                {% endif %}
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                    {% else %}
+        <!-- Followed this documentation to incorporate page navigation: https://docs.djangoproject.com/en/5.1/topics/pagination/-->
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                &laquo; Previous
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">&laquo; Previous</span>
                         </li>
                     {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                            Next &raquo;
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Next &raquo;</span>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                Next &raquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Next &raquo;</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 {% else %}
