@@ -228,6 +228,6 @@ def signup_chart_data(request):
 @cache_page(60 * 5)
 def requests_chart_data(request):
     requests_per_day = RequestLog.objects.values("date").annotate(total_requests=Sum("count")).order_by("date")
-    labels = [entry["date"].strftime("%Y-%m-%d") for entry in requests_per_day]
+    labels = [entry["date"].strftime("%m/%d") for entry in requests_per_day]
     values = [entry["total_requests"] for entry in requests_per_day]
     return JsonResponse({"labels": labels, "values": values})

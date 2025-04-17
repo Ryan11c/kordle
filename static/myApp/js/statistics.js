@@ -46,8 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 options: {
                     responsive: true,
-                    scales: {
-                        y: { beginAtZero: true }
+                    scales:{
+                        x:{ticks: {maxTicksLimit: 10}},
+                        y:{beginAtZero: true}
                     }
                 }
             });
