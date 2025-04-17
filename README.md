@@ -101,6 +101,7 @@ Database is PostgreSQL managed by Heroku and the application is also deployed on
 
 1. Create a `.env` file in the root directory of Kordle and put your secret key inside the `.env` file:
    ```
+   DEBUG=True
    SECRET_KEY=*******
    ```
 2. Apply migrations:
