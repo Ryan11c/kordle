@@ -21,7 +21,7 @@ class Profile(models.Model):
     date_modified = models.DateTimeField(User, auto_now=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to='images/')
     def __str__(self):
-        return f"{self.user.username} {self.user.email} - Wins: {self.wins}"
+        return f"User: {self.user.username} | First name: {self.user.first_name} | Last name:{self.user.last_name} | Email: {self.user.email} | Wins: {self.wins}"
 
 #Create profile when new user signs up
 def create_profile(sender, instance, created, **kwargs):
