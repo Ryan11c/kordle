@@ -74,12 +74,12 @@ function getIdolNum(guessIdolName) {
             return idol;
         }
         else{
-            //ERROR CATCHYYY
+            //Error catch
             console.log("You've already guessed this idol!");
             return null;
         }
     }else{
-        //ERROR CATCH AGAIN
+        //Error catch
         console.log("Idol not found!");
         return null;
     }
