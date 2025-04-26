@@ -182,7 +182,7 @@ Ryan Choi - ryanchoi4421@gamil.com
 
 Project Link: [https://github.com/Ryan11c/kordle](https://github.com/Ryan11c/kordle)
 
-[python-url]: https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
+[python-url]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [django-url]: https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green
 [djangorest-url]: https://img.shields.io/badge/django%20rest-ff1709?style=for-the-badge&logo=django&logoColor=white
 [js-url]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
