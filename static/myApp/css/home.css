@@ -3,116 +3,116 @@
 }
 
 .title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 2rem;
-    color: black;
-    text-shadow: 1px 1px 2px white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: black;
+  text-shadow: 1px 1px 2px white;
 }
   
 .userGuessForm {
-    position: relative;
-    margin: 20px;
-    display: flex;            
-    justify-content: center;   
-    align-items: center; 
+  position: relative;
+  margin: 20px;
+  display: flex;            
+  justify-content: center;   
+  align-items: center; 
 }
 
 .buttonHome {
-    width: 80px;
-    height: 70px;
-    box-shadow: 2px 2px 8px black;
-    border-radius: 10px;
-    font-weight: bold;
-    color: whitesmoke;
-    background-color: black;
-    border: none;
-    transition: all 0.3s ease-in-out;
+  width: 80px;
+  height: 70px;
+  box-shadow: 2px 2px 8px black;
+  border-radius: 10px;
+  font-weight: bold;
+  color: whitesmoke;
+  background-color: black;
+  border: none;
+  transition: all 0.3s ease-in-out;
 }
 
 .buttonHome:hover{
-    transform: translateY(-3px);
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8); 
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8); 
 }
 
 #userInput ::placeholder{
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .userGuessForm input {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .userGuessForm input::placeholder {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .userGuessInput {
-    width: 400px;
-    height: 70px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px black;
-    margin-right: 3px;
+  width: 400px;
+  height: 70px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px black;
+  margin-right: 3px;
 }
   
 .dropdown-list {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-height: 150px;
-    overflow-y: auto;
-    width: 200px; 
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px black;
-    list-style: none;
-    padding: 0;
-    display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 150px;
+  overflow-y: auto;
+  width: 200px; 
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px black;
+  list-style: none;
+  padding: 0;
+  display: none;
 }
   
 .dropdown-list li {
-    padding: 8px;
-    cursor: pointer;
+  padding: 8px;
+  cursor: pointer;
 }
   
 .dropdown-list li:hover {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
   
 #idol-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
 }
   
 #idol-table th, 
 #idol-table td {
-    border: 1px solid white;
-    padding: 10px;
-    text-align: center;
-    text-shadow: 2px 2px 2px black;
-    font-weight: bold;
-    color: white;
-    font-size: 20px;
+  border: 1px solid white;
+  padding: 10px;
+  text-align: center;
+  text-shadow: 2px 2px 2px black;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
 }
 
 .table-container {
-    width: 100%;
-    overflow-x: auto;
-    max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  max-width: 100%;
 }
   
 #topRow th {
-    font-family: 'Lucida Sans';
-    font-size: 15px;
-    width: 120px;
-    max-height: 50px;
-    color: white;
-    text-shadow: 2px 2px 2px black;
+  font-family: 'Lucida Sans';
+  font-size: 15px;
+  width: 120px;
+  max-height: 50px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
 }
 
 .idol-img {
@@ -122,34 +122,36 @@
 }
   
 .rotating-cell-correct {
-    font-size: 20px;
-    width: 100px;
-    height: 100px;
-    background-color: green;
-    text-align: center;
-    animation: rotate 0.5s;
-    animation: rotateYCard 0.6s backwards;
+  font-size: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  text-align: center;
+  animation: rotateYCard 0.6s forwards;
 }
   
 .rotating-cell-incorrect {
-    font-size: 20px;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    text-align: center;
-    animation: rotate 0.5s;
-    animation: rotateYCard 0.6s backwards;
+  font-size: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  text-align: center;
+  animation: rotateYCard 0.6s forwards;
 }
-  
-@keyframes rotate {
-    from {
-      opacity: 0;
-      transform: translateZ(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateZ(0);
-    }
+
+.rotating-cell-correct, .rotating-cell-incorrect {
+  /*this adds 3D perspective to fix the flipping animation */
+  perspective: 600px; 
+}
+
+.inner {
+  /*another fix was using inline-block to make the arrow key show beside the text
+  like this (April 1 2001 ↑) */
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  /*this counter-rotates the text */
+  transform: rotateY(180deg); 
 }
 
 /*This is to rotate the card. We update Y from 0 to 180*/
@@ -164,8 +166,8 @@
 
 @media (max-width: 768px) {
   .idol-img {
-      width: 100px;
-      height: 100px;
+    width: 100px;
+    height: 100px;
   }
   #idol-table th, 
   #idol-table td {
@@ -176,8 +178,8 @@
 
 @media (max-width: 480px) {
   .idol-img {
-      width: 75px;
-      height: 75px;
+    width: 75px;
+    height: 75px;
   }
   #idol-table th, 
   #idol-table td {
@@ -188,29 +190,29 @@
 
 /* background animation */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(213, 213, 213);
+  margin: 0;
+  padding: 0;
+  background-color: rgb(213, 213, 213);
 }
 
 .wrapper{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    filter: blur(80px);
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  filter: blur(80px);
+  z-index: -1;
 }
 
 .gradient {
-    position: absolute;
-    border-radius: 100%;
-    opacity: 0.7;
-    mix-blend-mode: screen;
-    animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0.1, 0, 0.9, 1);
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.1, 0, 0.9, 1);
 }
 
 .gradient-1 {
