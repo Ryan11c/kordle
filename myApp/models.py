@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+
 #Create your models here. 
 #This was my old League of Legends champion model for the wordle game. I have now switched over to kpop wordle😎
 #This model is not used!!
@@ -16,6 +17,7 @@ class Champion(models.Model):
     region = models.CharField(max_length=50)
     release_year = models.IntegerField()
 
+
 #User model profile that stores the amount of wins they have
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -25,11 +27,13 @@ class Profile(models.Model):
     def __str__(self):
         return f"User: {self.user.username} | First name: {self.user.first_name} | Last name:{self.user.last_name} | Email: {self.user.email} | Wins: {self.wins}"
 
+
 #Create profile when new user signs up
 def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)
         user_profile.save()
+
 
 post_save.connect(create_profile, sender=User)
 
@@ -45,4 +49,18 @@ class RequestLog(models.Model):
         unique_together = ["date"]  
     def __str__(self):
         return f"{self.date} - {self.count} requests"
+
+
+#this logs one unique visit per IP per day.
+class ActiveUserLog(models.Model):
+    date = models.DateField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    class Meta:
+        #making sure their is no duplicate IP per day
+        unique_together = ('date', 'ip_address')  
+    def __str__(self):
+        if self.user:
+            return f"{self.user.username} {self.ip_address} {self.date}"
+        return f"not logged in: {self.ip_address} {self.date}"
     

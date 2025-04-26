@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import IdolSerializer
-from.models import Profile, RequestLog
+from.models import Profile, RequestLog, ActiveUserLog
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UpdateUserForm, SignUpForm, UploadProfile
@@ -166,6 +166,22 @@ def signup_chart_data(request):
 @cache_page(60 * 5)
 def requests_chart_data(request):
     requests_per_day = RequestLog.objects.values("date").annotate(total_requests=Sum("count")).order_by("date")
-    labels = [entry["date"].strftime("%m/%d") for entry in requests_per_day]
-    values = [entry["total_requests"] for entry in requests_per_day]
-    return JsonResponse({"labels": labels, "values": values})
+    active_users_per_day = ActiveUserLog.objects.values("date").annotate(total_users=Count("ip_address")).order_by("date")
+    #building active users as a list we can check
+    active_users_list = list(active_users_per_day)
+    labels = []
+    request_values = []
+    active_user_values = []
+    active_id = 0
+    for i in requests_per_day:
+        request_date = i["date"]
+        labels.append(request_date.strftime("%m/%d"))
+        request_values.append(i["total_requests"])
+        #the default is 0 active users
+        total_users = 0
+        #matching active users if date aligns
+        if active_id < len(active_users_list) and active_users_list[active_id]["date"] == request_date:
+            total_users = active_users_list[active_id]["total_users"]
+            active_id += 1
+        active_user_values.append(total_users)
+    return JsonResponse({"labels": labels, "values": request_values, "active_user_values": active_user_values})

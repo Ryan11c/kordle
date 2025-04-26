@@ -87,6 +87,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'myApp.middleware.RequestLoggerMiddleware',
+    'myApp.middleware.ActiveUserMiddleware',
 ]
 
 ROOT_URLCONF = 'lolwordle.urls'
