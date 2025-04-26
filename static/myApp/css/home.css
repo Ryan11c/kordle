@@ -127,8 +127,7 @@
   height: 100px;
   background-color: green;
   text-align: center;
-  animation: rotate 0.5s;
-  animation: rotateYCard 0.6s backwards;
+  animation: rotateYCard 0.6s forwards;
 }
   
 .rotating-cell-incorrect {
@@ -137,19 +136,22 @@
   height: 100px;
   background-color: red;
   text-align: center;
-  animation: rotate 0.5s;
-  animation: rotateYCard 0.6s backwards;
+  animation: rotateYCard 0.6s forwards;
 }
-  
-@keyframes rotate {
-  from {
-    opacity: 0;
-    transform: translateZ(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
+
+.rotating-cell-correct, .rotating-cell-incorrect {
+  /*this adds 3D perspective to fix the flipping animation */
+  perspective: 600px; 
+}
+
+.inner {
+  /*another fix was using inline-block to make the arrow key show beside the text
+  like this (April 1 2001 ↑) */
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  /*this counter-rotates the text */
+  transform: rotateY(180deg); 
 }
 
 /*This is to rotate the card. We update Y from 0 to 180*/

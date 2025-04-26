@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-# Create your models here.
+#Create your models here. 
+#This was my old League of Legends champion model for the wordle game. I have now switched over to kpop wordle😎
+#This model is not used!!
 class Champion(models.Model):
     name = models.CharField(max_length=50)
     icon = models.URLField()
@@ -14,7 +16,7 @@ class Champion(models.Model):
     region = models.CharField(max_length=50)
     release_year = models.IntegerField()
 
-#Create a user model profile that stores the amount of wins they have
+#User model profile that stores the amount of wins they have
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     wins = models.PositiveIntegerField(default=0)

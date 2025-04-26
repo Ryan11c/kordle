@@ -143,7 +143,10 @@ async function compareIdolInfo(idolGuess, ansIdol) {
 
     //Group
     const groupCell = row.insertCell(-1);
-    groupCell.textContent = idolGuess.group;
+    const groupContent = document.createElement("div");
+    groupContent.classList.add("inner");
+    groupContent.textContent = idolGuess.group;
+    groupCell.appendChild(groupContent);
     if(idolGuess.group === ansIdol.group){
         groupCell.classList.add("rotating-cell-correct");
     }
@@ -154,7 +157,10 @@ async function compareIdolInfo(idolGuess, ansIdol) {
 
     //Birthday
     const birthdayCell = row.insertCell(-1);
-    birthdayCell.textContent = idolGuess.birthday;
+    const birthdayContent = document.createElement("div");
+    birthdayContent.classList.add("inner");
+    birthdayContent.textContent = idolGuess.birthday;
+    birthdayCell.appendChild(birthdayContent);
     //Make birthdays to Date objects for comparison
     let guessedDate = new Date(idolGuess.birthday);
     let answerDate = new Date(ansIdol.birthday);
@@ -167,13 +173,16 @@ async function compareIdolInfo(idolGuess, ansIdol) {
         let arrowIndicator = document.createElement("span");
         arrowIndicator.textContent = guessedDate < answerDate ? "↑" : "↓"; 
         arrowIndicator.style.marginLeft = "8px";
-        birthdayCell.appendChild(arrowIndicator);
+        birthdayContent.appendChild(arrowIndicator);
     }
     await sleep(500);
 
     //Height
     const heightCell = row.insertCell(-1);
-    heightCell.textContent = idolGuess.height;
+    const heightContent = document.createElement("div");
+    heightContent.classList.add("inner");
+    heightContent.textContent = idolGuess.height;
+    heightCell.appendChild(heightContent);
     if(idolGuess.height === ansIdol.height){
         heightCell.classList.add("rotating-cell-correct");
     }
@@ -182,13 +191,16 @@ async function compareIdolInfo(idolGuess, ansIdol) {
         let arrowIndicator = document.createElement("span");
         arrowIndicator.textContent = idolGuess.height < ansIdol.height ? "↑" : "↓";
         arrowIndicator.style.marginLeft = "8px"; 
-        heightCell.appendChild(arrowIndicator);
+        heightContent.appendChild(arrowIndicator);
     }
     await sleep(500);
 
     //Gender
     const genderCell = row.insertCell(-1);
-    genderCell.textContent = idolGuess.gender;
+    const genderContent = document.createElement("div");
+    genderContent.classList.add("inner");
+    genderContent.textContent = idolGuess.gender;
+    genderCell.appendChild(genderContent);
     if(idolGuess.gender === ansIdol.gender){
         genderCell.classList.add("rotating-cell-correct");
     }
@@ -199,7 +211,10 @@ async function compareIdolInfo(idolGuess, ansIdol) {
 
     //Company
     const companyCell = row.insertCell(-1);
-    companyCell.textContent = idolGuess.company;
+    const companyContent = document.createElement("div");
+    companyContent.classList.add("inner");
+    companyContent.textContent = idolGuess.company;
+    companyCell.appendChild(companyContent);
     if(idolGuess.company === ansIdol.company){
         companyCell.classList.add("rotating-cell-correct");
     }
@@ -210,7 +225,10 @@ async function compareIdolInfo(idolGuess, ansIdol) {
 
     //Nationality
     const nationalityCell = row.insertCell(-1);
-    nationalityCell.textContent = idolGuess.nationality;
+    const nationalityContent = document.createElement("div");
+    nationalityContent.classList.add("inner");
+    nationalityContent.textContent = idolGuess.nationality;
+    nationalityCell.appendChild(nationalityContent);
     if(idolGuess.nationality === ansIdol.nationality){
         nationalityCell.classList.add("rotating-cell-correct");
     }
