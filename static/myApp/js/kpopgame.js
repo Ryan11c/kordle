@@ -100,6 +100,7 @@ userGuessForm.addEventListener("submit", async event => {
         return;
     }
     const idolGuess = getIdolNum(selectedIdolName);
+    userGuessInput.value = "";
     //Check if the idolGuess and the answer matches
     if(idolGuess){
         await compareIdolInfo(idolGuess, ansIdol);
