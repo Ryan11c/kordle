@@ -10,6 +10,7 @@
 ![Bootstrap][bootstrap-url]
 ![Amazon][amazon-url]
 
+<hr/>
 
 <!-- PROJECT LOGO -->
 <br />
